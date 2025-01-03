@@ -1,40 +1,47 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 👋 About Us
 
-## Getting Started
+Black Out 자.하.연 팀의 프론트엔드 레포입니다.  
+Contributor: [정현조](https://github.com/HyunjoJeong), [이하동](https://github.com/)
 
-First, run the development server:
+## 🛠 Development Setup
+
+> `npm`을 기본 패키지 매니저로 사용합니다.
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+$ npm install
+# package install
+
+$ npm run dev
+# run dev server (-p 3091)
+
+$ npm run dev:https
+# run https dev server (-p 3091)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🍀 Tech Stack
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+* Node: `22.12.0(lts)`
+* npm: `10.9.0`
+* Next: `14.2.22`
+* React: `^18(18.3.1)`
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+## 📚 Documents
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+* [Frotend Notion](https://www.notion.so/Frontend-16d8702bbb23801d84e8fdaf61677a51)
+* [Coding Conventions](https://www.notion.so/Coding-Conventions-b558896841574e6dbf6c171e2ae4dead)
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## 🌟 Extensions
 
-## Learn More
+#### Highly Recommended
 
-To learn more about Next.js, take a look at the following resources:
+* [Better Comments](https://marketplace.visualstudio.com/items?itemName=aaron-bond.better-comments)
+* [ES7 React/Redux/GraphQL/React-Native snippets](https://marketplace.visualstudio.com/items?itemName=rodrigovallades.es7-react-js-snippets)
+* [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
+* [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
+* [vscode-styled-components](https://marketplace.visualstudio.com/items?itemName=styled-components.vscode-styled-components)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+#### Preference
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+* [Git Graph](https://marketplace.visualstudio.com/items?itemName=mhutchie.git-graph)
+* [Material Icon Theme](https://marketplace.visualstudio.com/items?itemName=PKief.material-icon-theme)
+* [Pretty TypeScript Errors](https://marketplace.visualstudio.com/items?itemName=yoavbls.pretty-ts-errors)
