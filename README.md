@@ -1,7 +1,7 @@
 # 👋 About Us
 
 Black Out 자.하.연 팀의 프론트엔드 레포입니다.  
-Contributor: [정현조](https://github.com/HyunjoJeong), [이하동](https://github.com/)
+Contributor: [정현조](https://github.com/HyunjoJeong), [이하동](https://github.com/Chrislee02)
 
 ## 🛠 Development Setup
 
