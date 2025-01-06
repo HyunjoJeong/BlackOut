@@ -1,5 +1,5 @@
-import { theme } from '@/config/emotion';
 import '@/global/styles/globals.css';
+import { theme } from '@/global/styles/theme';
 import { ThemeProvider } from '@emotion/react';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
