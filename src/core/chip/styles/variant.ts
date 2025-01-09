@@ -52,6 +52,24 @@ export const chipVariant = (theme: Theme) => ({
     }
   `,
 
+  outlinedPrimary: css`
+    background-color: transparent;
+    color: ${theme.colors.primary};
+    border: 1px solid ${theme.colors.primary};
+
+    :hover {
+      background-color: rgba(0, 0, 0, 0.04);
+    }
+
+    :active {
+      background-color: rgba(0, 0, 0, 0.08);
+    }
+
+    :disabled {
+      ${outlinedDisabled(theme)}
+    }
+  `,
+
   outlinedAssistive: css`
     background-color: transparent;
     color: ${theme.colors.gray[700]};
