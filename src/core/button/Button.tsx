@@ -10,6 +10,7 @@ type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
 
 export const Button = ({ children, variant = 'filledPrimary', css, ...props }: ButtonProps) => {
   const theme = useTheme();
+
   return (
     <button css={[defaultStyle, buttonVariant(theme)[variant], css]} {...props}>
       {children}

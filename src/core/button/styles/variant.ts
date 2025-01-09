@@ -48,6 +48,7 @@ export const buttonVariant = (theme: Theme) => ({
       ${filledDisabled(theme)}
     }
   `,
+
   outlinedPrimary: css`
     background-color: transparent;
     color: ${theme.colors.primary};
@@ -65,6 +66,7 @@ export const buttonVariant = (theme: Theme) => ({
       ${outlinedDisabled(theme)}
     }
   `,
+
   outlinedSecondary: css`
     background-color: transparent;
     color: ${theme.colors.primary};
@@ -82,6 +84,7 @@ export const buttonVariant = (theme: Theme) => ({
       ${outlinedDisabled(theme)}
     }
   `,
+
   outlinedAssistive: css`
     background-color: transparent;
     color: ${theme.colors['gray-700']};
@@ -99,6 +102,7 @@ export const buttonVariant = (theme: Theme) => ({
       ${outlinedDisabled(theme)}
     }
   `,
+
   textPrimary: css`
     background-color: transparent;
     color: ${theme.colors.primary};
@@ -116,6 +120,7 @@ export const buttonVariant = (theme: Theme) => ({
       ${textDisabled(theme)}
     }
   `,
+
   textAssistive: css`
     background-color: transparent;
     color: ${theme.colors['gray-700']};

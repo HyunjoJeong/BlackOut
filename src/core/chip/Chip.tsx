@@ -12,6 +12,7 @@ type ChipProps = ButtonHTMLAttributes<HTMLButtonElement> & {
 
 export const Chip = ({ children, variant = 'filledPrimary', css, ...props }: ChipProps) => {
   const theme = useTheme();
+
   return (
     <button css={[defaultStyle, chipVariant(theme)[variant], css]} {...props}>
       {children}
