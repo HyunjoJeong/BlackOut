@@ -11,7 +11,14 @@ export default function CoreComponentsTest() {
     'textAssistive',
   ];
 
-  const variants2 = ['filledPrimary', 'filledAssistive', 'outlinedAssistive'];
+  const variants2 = [
+    'filledPrimary',
+    'filledAssistive',
+    'outlinedAssistive',
+    'outlinedPrimary',
+    'filledDisabled',
+    'outlinedDisabled',
+  ];
 
   return (
     <>
