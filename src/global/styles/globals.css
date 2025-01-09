@@ -7,9 +7,9 @@
 body {
   width: 100%;
   min-height: 100svh;
-  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Apple SD Gothic Neo',
-    'Malgun Gothic', '맑은 고딕', '나눔고딕', 'Nanum Gothic', 'Noto Sans KR', arial, 돋움, Dotum,
-    Tahoma, sans-serif;
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Helvetica Neue',
+    'Apple SD Gothic Neo', 'Malgun Gothic', '맑은 고딕', '나눔고딕', 'Nanum Gothic', 'Noto Sans KR',
+    arial, 돋움, Dotum, Tahoma, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
