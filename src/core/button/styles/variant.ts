@@ -46,6 +46,7 @@ export const buttonVariant = (theme: Theme) => ({
 
     :disabled {
       ${filledDisabled(theme)}
+      filter: none;
     }
   `,
 

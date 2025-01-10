@@ -4,7 +4,6 @@ import type { HTMLAttributes } from 'react';
 import { chipVariant } from './styles/variant';
 
 type ChipProps = HTMLAttributes<HTMLDivElement> & {
-  disabled?: boolean;
   font?: keyof Theme['typography'];
   variant?: keyof ReturnType<typeof chipVariant>;
   css?: Interpolation<Theme>;
