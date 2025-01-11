@@ -1,5 +1,4 @@
 import { Button, Chip } from '@/core';
-import Divider from '@/global/components/Divider';
 import { css, useTheme } from '@emotion/react';
 import type { HTMLAttributes } from 'react';
 
@@ -31,8 +30,6 @@ const CardDetailNavigating: React.FC<CardDetailNavigatingProps> = ({
 
   return (
     <div {...props} css={wrapperStyle}>
-      <Divider />
-
       <Chip variant="filledSecondary" font="button3" css={{ padding: '10px' }}>
         가장 가까운 지구로 {labelMinutes}분
       </Chip>
@@ -98,13 +95,7 @@ const CardDetailNavigating: React.FC<CardDetailNavigatingProps> = ({
 export default CardDetailNavigating;
 
 const wrapperStyle = css`
-  position: absolute;
-  bottom: 0;
-
   background-color: #ffffff;
-  border-radius: 16px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  padding: 16px;
   display: flex;
   flex-direction: column;
   gap: 16px;

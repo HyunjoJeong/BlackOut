@@ -3,8 +3,10 @@ import Modal from 'react-modal';
 import { css, useTheme } from '@emotion/react';
 import { IconX } from '@/global/icons';
 import { Button } from '@/core';
+import { postEventJoin } from '../../apis';
 
 interface GuideModalProps {
+  selectedId: number | null;
   isOpen: boolean;
   onClose: () => void;
   onConfirm: () => void;
@@ -12,7 +14,7 @@ interface GuideModalProps {
 
 Modal.setAppElement('#__next');
 
-const GuideModal: React.FC<GuideModalProps> = ({ isOpen, onClose, onConfirm }) => {
+const GuideModal: React.FC<GuideModalProps> = ({ isOpen, onClose, onConfirm, selectedId }) => {
   const theme = useTheme();
 
   return (
@@ -68,7 +70,16 @@ const GuideModal: React.FC<GuideModalProps> = ({ isOpen, onClose, onConfirm }) =
           >
             취소
           </Button>
-          <Button variant="filledPrimary" css={{ padding: '16px 36px' }} onClick={onConfirm}>
+          <Button
+            variant="filledPrimary"
+            css={{ padding: '16px 36px' }}
+            onClick={() => {
+              if (selectedId) {
+                postEventJoin(selectedId);
+              }
+              onConfirm();
+            }}
+          >
             참여하기
           </Button>
         </div>

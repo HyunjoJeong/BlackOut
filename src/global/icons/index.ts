@@ -2,9 +2,9 @@
 
 export * from './IconArrow';
 export * from './IconBell';
+export * from './IconX';
+export * from './IconList';
 export * from './IconGCOOLogo';
 export * from './IconGCOOMapPointer';
 export * from './IconGCOOSymbol';
 export * from './IconHome';
-export * from './IconList';
-export * from './IconX';
