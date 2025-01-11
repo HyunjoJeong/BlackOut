@@ -4,7 +4,7 @@ import Divider from '@/global/components/Divider';
 import { css, useTheme } from '@emotion/react';
 import type { HTMLAttributes } from 'react';
 
-type CardDetailProps = HTMLAttributes<HTMLDivElement> & {
+type CardDetailNavigatingProps = HTMLAttributes<HTMLDivElement> & {
   labelMinutes: number;
   title: string;
   subtitle: string;
@@ -13,9 +13,10 @@ type CardDetailProps = HTMLAttributes<HTMLDivElement> & {
   remainingCount: number;
   remainingMinutes: number;
   onConfirm: () => void;
+  onCancel: () => void;
 };
 
-const CardDetail: React.FC<CardDetailProps> = ({
+const CardDetailNavigating: React.FC<CardDetailNavigatingProps> = ({
   labelMinutes,
   title,
   subtitle,
@@ -24,6 +25,7 @@ const CardDetail: React.FC<CardDetailProps> = ({
   remainingCount,
   remainingMinutes,
   onConfirm,
+  onCancel,
   ...props
 }) => {
   const theme = useTheme();
@@ -53,14 +55,6 @@ const CardDetail: React.FC<CardDetailProps> = ({
       </div>
 
       <div css={footerStyle}>
-        <Button
-          onClick={onConfirm}
-          variant="filledPrimary"
-          font="button1"
-          css={{ padding: '12px 80px' }}
-        >
-          참여하기
-        </Button>
         <div css={footerInfoStyle}>
           <div>
             <div
@@ -77,11 +71,32 @@ const CardDetail: React.FC<CardDetailProps> = ({
           </div>
         </div>
       </div>
+
+      <div css={footerButtonsStyle}>
+        <Button
+          font="button1"
+          variant="outlinedAssistive"
+          css={{
+            padding: '16px 40px',
+          }}
+          onClick={onCancel}
+        >
+          취소하기
+        </Button>
+        <Button
+          font="button1"
+          variant="filledPrimary"
+          css={{ padding: '16px 40px' }}
+          onClick={onConfirm}
+        >
+          도착완료
+        </Button>
+      </div>
     </div>
   );
 };
 
-export default CardDetail;
+export default CardDetailNavigating;
 
 const wrapperStyle = css`
   position: absolute;
@@ -116,7 +131,7 @@ const descriptionStyle = css`
 const footerStyle = css`
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: right;
   gap: 16px;
 `;
 
@@ -125,4 +140,11 @@ const footerInfoStyle = css`
   flex-direction: column;
   align-items: flex-end;
   gap: 4px;
+`;
+
+const footerButtonsStyle = css`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
 `;
