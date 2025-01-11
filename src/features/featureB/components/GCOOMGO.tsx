@@ -10,7 +10,7 @@ import type { EventDto, Phase } from '../types';
 import GcoomGoBottom from './GcoomGoBottom';
 
 export default function GCOOMGO() {
-  const [phase, setPhase] = useState<Phase>('navigate');
+  const [phase, setPhase] = useState<Phase>('initial');
   const [selectedId, setSelectedId] = useState<number | null>(null);
   const [pinData, setPinData] = useState<MapItemDto[]>(MOCKUP_DATA);
 

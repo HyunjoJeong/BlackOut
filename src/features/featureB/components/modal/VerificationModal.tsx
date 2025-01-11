@@ -24,7 +24,7 @@ const VerificationModal: React.FC<VerificationModalProps> = ({
   const theme = useTheme();
   const [code, setCode] = useState('');
   const [isCompleted, setIsCompleted] = useState(false);
-  const [isWrong, setIsWrong] = useState(true);
+  const [isWrong, setIsWrong] = useState(false);
 
   const handleCodeComplete = (enteredCode: string) => {
     setCode(enteredCode);
@@ -57,6 +57,7 @@ const VerificationModal: React.FC<VerificationModalProps> = ({
             onClick={() => {
               setCode('');
               setIsCompleted(false);
+              setIsWrong(false);
               onClose();
             }}
           />
@@ -86,7 +87,9 @@ const VerificationModal: React.FC<VerificationModalProps> = ({
               .then((_) => {
                 onConfirm();
               })
-              .catch((_) => {});
+              .catch((_) => {
+                setIsWrong(true);
+              });
           }}
           disabled={!isCompleted} // 입력이 완료되지 않으면 버튼 비활성화
         >
