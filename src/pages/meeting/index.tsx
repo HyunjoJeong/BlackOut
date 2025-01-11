@@ -1,7 +1,8 @@
 import Map from '@/features/map/components/Map';
 import { MOCKUP_DATA } from '@/features/map/constants';
+import BottomSheet from '@/global/components/BottomSheet';
+import ScrollArea from '@/global/components/ScrollArea';
 import { Header } from '@/global/layouts';
-import styled from '@emotion/styled';
 import { useState } from 'react';
 
 const MeetingMainPage = () => {
@@ -14,13 +15,19 @@ const MeetingMainPage = () => {
   return (
     <>
       <Header center={'지쿰 만나'} />
-      <StyledMain>
+      <main>
         <Map datas={MOCKUP_DATA} selectedId={selectedId} onItemClick={handleClick} />
-      </StyledMain>
+        <BottomSheet>
+          <ScrollArea maxHeight={240}>
+            <div style={{ height: 100, background: 'red' }}>하이</div>
+            <div style={{ height: 100, background: 'yellow' }}>하이</div>
+            <div style={{ height: 100, background: 'green' }}>하이</div>
+            <div style={{ height: 100, background: 'blue' }}>하이</div>
+          </ScrollArea>
+        </BottomSheet>
+      </main>
     </>
   );
 };
 
 export default MeetingMainPage;
-
-const StyledMain = styled.main``;
