@@ -1,5 +1,5 @@
-import { IconBell } from '@/global/icons';
 import styled from '@emotion/styled';
+import Image from 'next/image';
 import { PIN_COLOR } from '../constants';
 import { IconPinArrow } from '../icons/IconPinArrow';
 import type { MapItemDto } from '../types/dto';
@@ -18,9 +18,9 @@ const MapPin = ({ data, isSelected, onClick }: Props) => {
   return (
     <StyledWrapper $isSelected={isSelected} css={{ left: coordinates[0], top: coordinates[1] }}>
       <div onClick={onClick}>
-        <StyledIconWrapper>
-          <IconBell size={13} />
-        </StyledIconWrapper>
+        <StyledImageWrapper>
+          <Image src="/bread.png" alt="아이콘" width={13} height={13} />
+        </StyledImageWrapper>
         <p>{destination}</p>
       </div>
       <IconPinArrow />
@@ -63,7 +63,7 @@ const StyledWrapper = styled.div<{ $isSelected?: boolean }>`
   }
 `;
 
-const StyledIconWrapper = styled.div`
+const StyledImageWrapper = styled.div`
   padding: 4px;
   width: fit-content;
   border-radius: 50%;
