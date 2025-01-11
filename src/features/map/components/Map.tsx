@@ -3,7 +3,7 @@ import type { MapItemDto } from '../types/dto';
 import MapPin from './MapPin';
 
 type Props = {
-  datas: MapItemDto[];
+  datas: MapItemDto[] | undefined;
   selectedId: number | null;
   onItemClick: (id: number) => void;
 };
@@ -11,7 +11,7 @@ type Props = {
 const Map = ({ datas, selectedId, onItemClick }: Props) => {
   return (
     <StyledSection>
-      {datas.map((itemData) => (
+      {datas?.map((itemData) => (
         <MapPin
           key={itemData.id}
           data={itemData}

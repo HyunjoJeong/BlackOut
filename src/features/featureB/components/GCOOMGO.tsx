@@ -1,38 +1,17 @@
 import { Chip } from '@/core';
-import { MOCKUP_DATA } from '@/features/map/constants';
-import type { MapItemDto } from '@/features/map/types/dto';
 import BottomSheet from '@/global/components/BottomSheet';
 import { css } from '@emotion/react';
 import { useState } from 'react';
 import Map from '../../map/components/Map';
 import { useFetchEventListQuery } from '../hooks/useFetchEventListQuery';
-import type { EventDto, Phase } from '../types';
+import type { Phase } from '../types';
 import GcoomGoBottom from './GcoomGoBottom';
 
 export default function GCOOMGO() {
   const [phase, setPhase] = useState<Phase>('initial');
   const [selectedId, setSelectedId] = useState<number | null>(null);
-  const [pinData, setPinData] = useState<MapItemDto[]>(MOCKUP_DATA);
 
-  const {
-    data: eventListData,
-    isLoading,
-    error,
-  } = useFetchEventListQuery({
-    onSuccess: (fetchedData: EventDto[]) => {
-      setPinData(
-        fetchedData.map((event) => ({
-          id: Number(event.id),
-          title: event.title,
-          destination: event.destination,
-          coordinates: event.coordinates,
-        }))
-      );
-    },
-  });
-
-  // if (isLoading) return <div>Loading...</div>;
-  // if (error) return <div>Error loading data</div>;
+  const { data: eventListData } = useFetchEventListQuery();
 
   return (
     <>
@@ -50,9 +29,8 @@ export default function GCOOMGO() {
           문화 여가
         </Chip>
       </div>
-
       <Map
-        datas={pinData}
+        datas={eventListData}
         selectedId={selectedId}
         onItemClick={(id: number) => {
           if (id === selectedId) {

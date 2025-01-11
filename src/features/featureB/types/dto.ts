@@ -1,5 +1,7 @@
+import type { Coordinates } from '@/features/map/types';
+
 export type EventDto = {
-  id: string;
+  id: number;
   created_at: string;
   title: string;
   host_name: string;
@@ -8,12 +10,12 @@ export type EventDto = {
   num_started: number;
   num_completed: number;
   remaining_num: number;
-  coordinates: [number, number];
+  coordinates: Coordinates;
   image_url: string;
 };
 
 export type EventDetailDto = {
-  id: string;
+  id: number;
   host_name: string;
   destination: string;
   title: string;
@@ -23,6 +25,6 @@ export type EventDetailDto = {
   num_started: number;
   num_completed: number;
   remaining_num: number;
-  coordinates: [number, number];
+  coordinates: Coordinates;
   status: 'started' | 'completed' | 'not_started';
 };

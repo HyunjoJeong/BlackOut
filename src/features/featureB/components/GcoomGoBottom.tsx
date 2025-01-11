@@ -1,10 +1,9 @@
-import { useEffect, useState } from 'react';
-import type { EventDetailDto, EventDto, Phase } from '../types';
-import { CardListWrapper, Card, CardDetail, CardDetailNavigating } from './card';
-import { GuideModal, VerificationModal, CompletedModal } from './modal';
-import { getEventDetail } from '../apis';
 import ScrollArea from '@/global/components/ScrollArea';
+import { useState } from 'react';
 import { useFetchEventDetailQuery } from '../hooks/useFetchEventDetailQuery';
+import type { EventDetailDto, EventDto, Phase } from '../types';
+import { Card, CardDetail, CardDetailNavigating, CardListWrapper } from './card';
+import { CompletedModal, GuideModal, VerificationModal } from './modal';
 
 const cardMockData = {
   imageSrc: '/mockmap.png',
