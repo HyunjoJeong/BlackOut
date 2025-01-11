@@ -59,6 +59,12 @@ export const theme = {
       letterSpacing: '-0.3px',
       fontWeight: fontWeights.semiBold,
     },
+    title5: {
+      fontSize: '20px',
+      lineHeight: '140%',
+      letterSpacing: '-0.3px',
+      fontWeight: fontWeights.bold,
+    },
     subTitle1: {
       fontSize: '18px',
       lineHeight: '140%',
@@ -71,6 +77,18 @@ export const theme = {
       letterSpacing: '0px',
       fontWeight: fontWeights.semiBold,
     },
+    subTitle3: {
+      fontSize: '18px',
+      lineHeight: '140%',
+      letterSpacing: '-0.3px',
+      fontWeight: fontWeights.bold,
+    },
+    subTitle4: {
+      fontSize: '16px',
+      lineHeight: '140%',
+      letterSpacing: '0px',
+      fontWeight: fontWeights.bold,
+    },
     body1: {
       fontSize: '16px',
       lineHeight: '140%',
@@ -82,6 +100,12 @@ export const theme = {
       lineHeight: '140%',
       letterSpacing: '0px',
       fontWeight: fontWeights.medium,
+    },
+    label0: {
+      fontSize: '14px',
+      lineHeight: '140%',
+      letterSpacing: '0px',
+      fontWeight: fontWeights.semiBold,
     },
     label1: {
       fontSize: '14px',
