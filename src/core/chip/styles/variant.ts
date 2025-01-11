@@ -30,6 +30,20 @@ export const chipVariant = (theme: Theme) => ({
     }
   `,
 
+  filledSecondary: css`
+    background-color: ${theme.colors.secondary};
+    color: ${theme.colors.primary};
+    border: none;
+
+    :hover {
+      filter: brightness(90%);
+    }
+
+    :active {
+      filter: brightness(80%);
+    }
+  `,
+
   outlinedPrimary: css`
     background-color: transparent;
     color: ${theme.colors.primary};
