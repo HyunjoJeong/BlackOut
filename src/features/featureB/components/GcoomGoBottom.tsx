@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import type { EventDetailDto, EventDto, Phase } from '../types';
 import { CardListWrapper, Card, CardDetail, CardDetailNavigating } from './card';
 import { GuideModal, VerificationModal, CompletedModal } from './modal';
-import { fetchEventDetails } from '../apis';
+import { getEventDetail } from '../apis';
 import ScrollArea from '@/global/components/ScrollArea';
 import { useFetchEventDetailQuery } from '../hooks/useFetchEventDetailQuery';
 
