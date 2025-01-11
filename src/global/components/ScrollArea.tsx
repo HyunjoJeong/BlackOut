@@ -18,7 +18,7 @@ const StyledWrapper = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 24px;
+  gap: 48px;
 
   overflow-y: scroll;
 

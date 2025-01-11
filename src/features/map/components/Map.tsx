@@ -1,17 +1,16 @@
+import { MEET_LIST_MOCKUP } from '@/features/meeting/constants';
 import styled from '@emotion/styled';
-import type { MapItemDto } from '../types/dto';
 import MapPin from './MapPin';
 
 type Props = {
-  datas: MapItemDto[];
   selectedId: number | null;
   onItemClick: (id: number) => void;
 };
 
-const Map = ({ datas, selectedId, onItemClick }: Props) => {
+const Map = ({ selectedId, onItemClick }: Props) => {
   return (
     <StyledSection>
-      {datas.map((itemData) => (
+      {MEET_LIST_MOCKUP.map((itemData) => (
         <MapPin
           key={itemData.id}
           data={itemData}
