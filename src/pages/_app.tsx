@@ -1,3 +1,4 @@
+import { MobileLayout } from '@/global/layouts';
 import '@/global/styles/globals.css';
 import { theme } from '@/global/styles/theme';
 import { ThemeProvider } from '@emotion/react';
@@ -13,7 +14,9 @@ export default function App({ Component, pageProps }: AppProps) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <ThemeProvider theme={theme}>
-        <Component {...pageProps} />
+        <MobileLayout>
+          <Component {...pageProps} />
+        </MobileLayout>
       </ThemeProvider>
     </>
   );
