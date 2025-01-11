@@ -4,6 +4,10 @@ import MockMap from '@/features/featureB/components/MockMap';
 import { Footer, Header } from '@/global/layouts';
 import { useState } from 'react';
 import CardDetail from './CardDetail';
+import GuideModal from './GuideModal';
+import CardDetailNavigating from './CardDetailNavigating';
+import VerificationModal from './VerificationModal';
+import CompletedModal from './CompletedModal';
 
 const cardMockData = {
   imageSrc: '/mockmap.png',
@@ -26,6 +30,9 @@ const detailMockData = {
 
 export default function GCOOMGO() {
   const [phase, setPhase] = useState<'initial' | 'eventInfo' | 'navigate'>('initial');
+  const [isGuideModalOpen, setIsGuideModalOpen] = useState(false);
+  const [isVerificationModalOpen, setIsVerificationModalOpen] = useState(false);
+  const [isCompletedModalOpen, setIsCompletedModalOpen] = useState(false);
 
   return (
     <>
@@ -44,7 +51,59 @@ export default function GCOOMGO() {
         </CardListWrapper>
       )}
 
-      {phase === 'eventInfo' && <CardDetail {...detailMockData} />}
+      {phase === 'eventInfo' && (
+        <CardDetail
+          onConfirm={() => {
+            setIsGuideModalOpen(true);
+          }}
+          {...detailMockData}
+        />
+      )}
+
+      {phase === 'navigate' && (
+        <CardDetailNavigating
+          onConfirm={() => {
+            setIsVerificationModalOpen(true);
+          }}
+          onCancel={() => {
+            setPhase('eventInfo');
+          }}
+          {...detailMockData}
+        />
+      )}
+
+      <GuideModal
+        isOpen={isGuideModalOpen}
+        onClose={() => {
+          setIsGuideModalOpen(false);
+        }}
+        onConfirm={() => {
+          setIsGuideModalOpen(false);
+          setPhase('navigate');
+        }}
+      ></GuideModal>
+
+      <VerificationModal
+        isOpen={isVerificationModalOpen}
+        onClose={() => {
+          setIsVerificationModalOpen(false);
+        }}
+        onConfirm={() => {
+          setIsVerificationModalOpen(false);
+          setIsCompletedModalOpen(true);
+        }}
+      />
+
+      <CompletedModal
+        isOpen={isCompletedModalOpen}
+        onClose={() => {
+          setIsCompletedModalOpen(false);
+          // todo: 홈으로 라우팅
+        }}
+        onConfirm={() => {
+          setIsCompletedModalOpen(false);
+        }}
+      ></CompletedModal>
 
       <Footer />
     </>
