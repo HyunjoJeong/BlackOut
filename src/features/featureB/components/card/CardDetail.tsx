@@ -29,8 +29,6 @@ const CardDetail: React.FC<CardDetailProps> = ({
 
   return (
     <div {...props} css={wrapperStyle}>
-      <Divider />
-
       <Chip variant="filledSecondary" font="button3" css={{ padding: '10px' }}>
         가장 가까운 지구로 {labelMinutes}분
       </Chip>
@@ -56,7 +54,7 @@ const CardDetail: React.FC<CardDetailProps> = ({
           onClick={onConfirm}
           variant="filledPrimary"
           font="button1"
-          css={{ padding: '12px 80px' }}
+          css={{ padding: '12px 70px' }}
           disabled={remainingCount <= 0}
         >
           참여하기
@@ -84,13 +82,8 @@ const CardDetail: React.FC<CardDetailProps> = ({
 export default CardDetail;
 
 const wrapperStyle = css`
-  position: absolute;
-  bottom: 0;
-
   background-color: #ffffff;
   border-radius: 16px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  padding: 16px;
   display: flex;
   flex-direction: column;
   gap: 16px;

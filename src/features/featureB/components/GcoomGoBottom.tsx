@@ -3,6 +3,8 @@ import type { EventDetailDto, EventDto, Phase } from '../types';
 import { CardListWrapper, Card, CardDetail, CardDetailNavigating } from './card';
 import { GuideModal, VerificationModal, CompletedModal } from './modal';
 import { fetchEventDetails } from '../apis';
+import { hostname } from 'os';
+import ScrollArea from '@/global/components/ScrollArea';
 
 const cardMockData = {
   imageSrc: '/mockmap.png',
@@ -91,35 +93,63 @@ export default function GcoomGoBottom({
   return (
     <>
       {phase === 'initial' && (
-        <CardListWrapper>
-          {eventList?.map((event_) => {
-            const currentTime = new Date();
-            const expiryTime = new Date(event_.expiry);
-            const remainingMinutes = Math.floor(
-              (expiryTime.getTime() - currentTime.getTime()) / (1000 * 60)
-            ); // 남은 시간(분 단위)
+        <ScrollArea maxHeight={240}>
+          <CardListWrapper>
+            {eventList?.map((event_) => {
+              const currentTime = new Date();
+              const expiryTime = new Date(event_.expiry);
+              const remainingMinutes = Math.floor(
+                (expiryTime.getTime() - currentTime.getTime()) / (1000 * 60)
+              ); // 남은 시간(분 단위)
 
-            // 변환된 데이터 구조
-            const transformedEvent = {
-              imageSrc: event_.image_url, // 이미지 URL
-              title: event_.title, // 이벤트 제목
-              hostname: event_.host_name, // 호스트 이름
-              remainingCount: event_.remaining_num, // 남은 인원 수
-              remainingMinutes: Math.max(remainingMinutes, 0), // 남은 시간(분), 음수가 되지 않도록 처리
-            };
+              // 변환된 데이터 구조
+              const transformedEvent = {
+                imageSrc: event_.image_url, // 이미지 URL
+                title: event_.title, // 이벤트 제목
+                hostname: event_.host_name, // 호스트 이름
+                remainingCount: event_.remaining_num, // 남은 인원 수
+                remainingMinutes: Math.max(remainingMinutes, 0), // 남은 시간(분), 음수가 되지 않도록 처리
+              };
 
-            return (
-              <Card
-                onClick={() => {
-                  setPhase('eventInfo');
-                  setSelectedId(Number(event_.id));
-                }}
-                key={event_.id}
-                {...transformedEvent}
-              ></Card>
-            );
-          })}
-        </CardListWrapper>
+              return (
+                <Card
+                  onClick={() => {
+                    setPhase('eventInfo');
+                    setSelectedId(Number(event_.id));
+                  }}
+                  key={event_.id}
+                  // {...transformedEvent}
+                  hostname={cardMockData.subtitle}
+                  {...cardMockData}
+                ></Card>
+              );
+            })}
+            <Card
+              onClick={() => {
+                setPhase('eventInfo');
+              }}
+              // {...transformedEvent}
+              hostname={cardMockData.subtitle}
+              {...cardMockData}
+            ></Card>
+            <Card
+              onClick={() => {
+                setPhase('eventInfo');
+              }}
+              // {...transformedEvent}
+              hostname={cardMockData.subtitle}
+              {...cardMockData}
+            ></Card>
+            <Card
+              onClick={() => {
+                setPhase('eventInfo');
+              }}
+              // {...transformedEvent}
+              hostname={cardMockData.subtitle}
+              {...cardMockData}
+            ></Card>
+          </CardListWrapper>
+        </ScrollArea>
       )}
 
       {phase === 'eventInfo' && (
