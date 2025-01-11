@@ -1,10 +1,9 @@
-/** @jsxImportSource @emotion/react */
 import { Button, Chip } from '@/core';
 import Divider from '@/global/components/Divider';
 import { css, useTheme } from '@emotion/react';
 import type { HTMLAttributes } from 'react';
 
-type CardDetailNavigatingProps = HTMLAttributes<HTMLDivElement> & {
+type CardDetailProps = HTMLAttributes<HTMLDivElement> & {
   labelMinutes: number;
   title: string;
   subtitle: string;
@@ -13,10 +12,9 @@ type CardDetailNavigatingProps = HTMLAttributes<HTMLDivElement> & {
   remainingCount: number;
   remainingMinutes: number;
   onConfirm: () => void;
-  onCancel: () => void;
 };
 
-const CardDetailNavigating: React.FC<CardDetailNavigatingProps> = ({
+const CardDetail: React.FC<CardDetailProps> = ({
   labelMinutes,
   title,
   subtitle,
@@ -25,7 +23,6 @@ const CardDetailNavigating: React.FC<CardDetailNavigatingProps> = ({
   remainingCount,
   remainingMinutes,
   onConfirm,
-  onCancel,
   ...props
 }) => {
   const theme = useTheme();
@@ -55,6 +52,14 @@ const CardDetailNavigating: React.FC<CardDetailNavigatingProps> = ({
       </div>
 
       <div css={footerStyle}>
+        <Button
+          onClick={onConfirm}
+          variant="filledPrimary"
+          font="button1"
+          css={{ padding: '12px 80px' }}
+        >
+          참여하기
+        </Button>
         <div css={footerInfoStyle}>
           <div>
             <div
@@ -71,32 +76,11 @@ const CardDetailNavigating: React.FC<CardDetailNavigatingProps> = ({
           </div>
         </div>
       </div>
-
-      <div css={footerButtonsStyle}>
-        <Button
-          font="button1"
-          variant="outlinedAssistive"
-          css={{
-            padding: '16px 40px',
-          }}
-          onClick={onCancel}
-        >
-          취소하기
-        </Button>
-        <Button
-          font="button1"
-          variant="filledPrimary"
-          css={{ padding: '16px 40px' }}
-          onClick={onConfirm}
-        >
-          도착완료
-        </Button>
-      </div>
     </div>
   );
 };
 
-export default CardDetailNavigating;
+export default CardDetail;
 
 const wrapperStyle = css`
   position: absolute;
@@ -131,7 +115,7 @@ const descriptionStyle = css`
 const footerStyle = css`
   display: flex;
   align-items: center;
-  justify-content: right;
+  justify-content: space-between;
   gap: 16px;
 `;
 
@@ -140,11 +124,4 @@ const footerInfoStyle = css`
   flex-direction: column;
   align-items: flex-end;
   gap: 4px;
-`;
-
-const footerButtonsStyle = css`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
 `;

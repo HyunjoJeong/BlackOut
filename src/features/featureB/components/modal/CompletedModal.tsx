@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
 import { css, useTheme } from '@emotion/react';
-import { IconX } from '@/global/icons';
 import { Button } from '@/core';
-import CodeInput from './CodeInput';
 
 interface CompletedModalProps {
   isOpen: boolean;
@@ -36,7 +34,6 @@ const CompletedModal: React.FC<CompletedModalProps> = ({ isOpen, onClose, onConf
         },
       }}
     >
-      {/* 모달 내부 */}
       <div css={modalContentStyle}>
         <div css={[theme.typography.subTitle3, { color: theme.colors.gray[800] }]}>축하드려요!</div>
         <div css={[theme.typography.body1, { color: theme.colors.gray[700] }]}>

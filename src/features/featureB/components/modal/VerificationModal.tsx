@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import Modal from 'react-modal';
 import { css, useTheme } from '@emotion/react';
 import { IconX } from '@/global/icons';
-import { Button } from '@/core';
 import CodeInput from './CodeInput';
 
 interface VerificationModalProps {
@@ -20,7 +19,7 @@ const VerificationModal: React.FC<VerificationModalProps> = ({ isOpen, onClose, 
 
   const handleCodeComplete = (enteredCode: string) => {
     setCode(enteredCode);
-    setIsCompleted(true); // 입력이 완료되었음을 표시
+    setIsCompleted(true);
   };
 
   return (
@@ -42,7 +41,6 @@ const VerificationModal: React.FC<VerificationModalProps> = ({ isOpen, onClose, 
         },
       }}
     >
-      {/* 모달 내부 */}
       <div css={modalContentStyle}>
         <div>
           <IconX

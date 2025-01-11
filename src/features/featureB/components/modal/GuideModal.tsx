@@ -155,33 +155,3 @@ const footerStyle = css`
   justify-content: space-between;
   margin-top: 16px;
 `;
-
-const cancelButtonStyle = css`
-  width: 142px;
-  height: 52px;
-  background: #e0e0e0;
-  color: #555;
-  border: none;
-  border-radius: 8px;
-  padding: 10px 16px;
-  font-size: 14px;
-  cursor: pointer;
-
-  &:hover {
-    background: #d6d6d6;
-  }
-`;
-
-const confirmButtonStyle = css`
-  background: #35d32f;
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  padding: 10px 16px;
-  font-size: 14px;
-  cursor: pointer;
-
-  &:hover {
-    background: #2cb428;
-  }
-`;
