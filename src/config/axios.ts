@@ -1,7 +1,7 @@
 import axios, { AxiosError, type AxiosResponse } from 'axios';
 
 export const APIServer = axios.create({
-  baseURL: '', // TODO
+  baseURL: 'https://jahayeon-back.fly.dev/api/v1', // TODO
   headers: { 'Content-Type': `application/json` },
 });
 
