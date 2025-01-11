@@ -4,29 +4,29 @@ import GcoomGoBottom from './GcoomGoBottom';
 import Map from '../../map/components/Map';
 import { MOCKUP_DATA } from '@/features/map/constants';
 import type { MapItemDto } from '@/features/map/types/dto';
-import axios from 'axios';
-import { useQuery } from 'react-query';
-import { useFetchEventListQuery } from '../apis/useFetchEventListQuery';
+import { useFetchEventListQuery } from '../hooks/useFetchEventListQuery';
 
 export default function GCOOMGO() {
   const [phase, setPhase] = useState<Phase>('initial');
   const [selectedId, setSelectedId] = useState<number | null>(null);
   const [pinData, setPinData] = useState<MapItemDto[]>(MOCKUP_DATA);
 
-  const fetchEventListData = async () => {
-    const { fetchedData }: { fetchedData: EventDto[] } = await axios.get('/api/events');
-    setPinData(
-      fetchedData.map((event) => ({
-        id: Number(event.id),
-        title: event.title,
-        destination: event.destination,
-        coordinates: event.coordinates,
-      }))
-    );
-    return fetchedData;
-  };
-
-  const { data: eventListData, isLoading, error } = useFetchEventListQuery();
+  const {
+    data: eventListData,
+    isLoading,
+    error,
+  } = useFetchEventListQuery({
+    onSuccess: (fetchedData: EventDto[]) => {
+      setPinData(
+        fetchedData.map((event) => ({
+          id: Number(event.id),
+          title: event.title,
+          destination: event.destination,
+          coordinates: event.coordinates,
+        }))
+      );
+    },
+  });
 
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error loading data</div>;

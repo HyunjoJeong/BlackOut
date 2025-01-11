@@ -1,7 +1,8 @@
-import { useState } from 'react';
-import type { EventDto, Phase } from '../types';
+import { useEffect, useState } from 'react';
+import type { EventDetailDto, EventDto, Phase } from '../types';
 import { CardListWrapper, Card, CardDetail, CardDetailNavigating } from './card';
 import { GuideModal, VerificationModal, CompletedModal } from './modal';
+import { fetchEventDetails } from '../apis';
 
 const cardMockData = {
   imageSrc: '/mockmap.png',
@@ -28,6 +29,7 @@ type GcoomGoBottomProps = {
   selectedId: number | null;
   setSelectedId: (id: number | null) => void;
   eventList?: EventDto[];
+  eventDetails?: EventDetailDto;
 };
 
 export default function GcoomGoBottom({
@@ -40,7 +42,52 @@ export default function GcoomGoBottom({
   const [isGuideModalOpen, setIsGuideModalOpen] = useState(false);
   const [isVerificationModalOpen, setIsVerificationModalOpen] = useState(false);
   const [isCompletedModalOpen, setIsCompletedModalOpen] = useState(false);
+  const [eventDetails, setEventDetails] = useState<EventDetailDto | null>(null);
 
+  const transformEventDetailsToCardProps = (
+    details: EventDetailDto | null
+  ): {
+    labelMinutes: number;
+    title: string;
+    subtitle: string;
+    address: string;
+    description: string;
+    remainingCount: number;
+    remainingMinutes: number;
+  } | null => {
+    if (!details) return null;
+
+    const currentTime = new Date();
+    const expiryTime = new Date(details.expiry);
+    const remainingMinutes = Math.max(
+      Math.floor((expiryTime.getTime() - currentTime.getTime()) / (1000 * 60)),
+      0
+    ); // 음수 방지
+
+    return {
+      labelMinutes: remainingMinutes,
+      title: details.title,
+      subtitle: details.host_name, // 호스트 이름을 subtitle로 매핑
+      address: details.destination,
+      description: details.description,
+      remainingCount: details.remaining_num,
+      remainingMinutes,
+    };
+  };
+
+  const detailData = transformEventDetailsToCardProps(eventDetails);
+
+  useEffect(() => {
+    if (selectedId !== null) {
+      fetchEventDetails(selectedId)
+        .then((details) => {
+          setEventDetails(details);
+        })
+        .catch((error) => {
+          console.error('Error fetching event details:', error);
+        });
+    }
+  }, [selectedId]);
   return (
     <>
       {phase === 'initial' && (
@@ -80,7 +127,7 @@ export default function GcoomGoBottom({
           onConfirm={() => {
             setIsGuideModalOpen(true);
           }}
-          {...detailMockData}
+          {...(detailData ?? detailMockData)}
         />
       )}
 
@@ -92,7 +139,7 @@ export default function GcoomGoBottom({
           onCancel={() => {
             setPhase('eventInfo');
           }}
-          {...detailMockData}
+          {...(detailData ?? detailMockData)}
         />
       )}
 
