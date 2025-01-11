@@ -14,6 +14,7 @@ const handleFulfilled = (response: AxiosResponse) => {
 const handleRejected = (error: any) => {
   if (error instanceof AxiosError) {
     console.error(error.response?.data);
+    throw error;
   }
 };
 

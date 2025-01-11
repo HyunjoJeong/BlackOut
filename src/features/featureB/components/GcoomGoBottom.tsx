@@ -4,6 +4,7 @@ import { useFetchEventDetailQuery } from '../hooks/useFetchEventDetailQuery';
 import type { EventDetailDto, EventDto, Phase } from '../types';
 import { Card, CardDetail, CardDetailNavigating, CardListWrapper } from './card';
 import { CompletedModal, GuideModal, VerificationModal } from './modal';
+import { useRouter } from 'next/navigation';
 
 const cardMockData = {
   imageSrc: '/mockmap.png',
@@ -43,6 +44,8 @@ export default function GcoomGoBottom({
   const [isGuideModalOpen, setIsGuideModalOpen] = useState(false);
   const [isVerificationModalOpen, setIsVerificationModalOpen] = useState(false);
   const [isCompletedModalOpen, setIsCompletedModalOpen] = useState(false);
+
+  const router = useRouter();
 
   const { data: eventDetails, isLoading, error } = useFetchEventDetailQuery(selectedId);
 
@@ -107,13 +110,13 @@ export default function GcoomGoBottom({
                     setSelectedId(Number(event_.id));
                   }}
                   key={event_.id}
-                  // {...transformedEvent}
-                  hostname={cardMockData.subtitle}
-                  {...cardMockData}
+                  {...transformedEvent}
+                  // hostname={cardMockData.subtitle}
+                  // {...cardMockData}
                 ></Card>
               );
             })}
-            <Card
+            {/* <Card
               onClick={() => {
                 setPhase('eventInfo');
               }}
@@ -136,7 +139,7 @@ export default function GcoomGoBottom({
               // {...transformedEvent}
               hostname={cardMockData.subtitle}
               {...cardMockData}
-            ></Card>
+            ></Card> */}
           </CardListWrapper>
         </ScrollArea>
       )}
@@ -190,7 +193,8 @@ export default function GcoomGoBottom({
         isOpen={isCompletedModalOpen}
         onClose={() => {
           setIsCompletedModalOpen(false);
-          // todo: 홈으로 라우팅
+          router.push('/');
+          router.refresh();
         }}
         onConfirm={() => {
           setIsCompletedModalOpen(false);
