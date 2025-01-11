@@ -24,5 +24,5 @@ export type EventDetailDto = {
   num_completed: number;
   remaining_num: number;
   coordinates: [number, number];
-  status: string;
+  status: 'started' | 'completed' | 'not_started';
 };
