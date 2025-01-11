@@ -19,7 +19,7 @@ export const Header = ({ left, center, right }: Props) => {
 
 const StyledHeader = styled.header`
   position: relative;
-  padding: 8px 16px;
+  padding: 16px;
 
   display: flex;
   align-items: center;
