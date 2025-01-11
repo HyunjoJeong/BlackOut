@@ -3,8 +3,8 @@ import type { EventDetailDto, EventDto, Phase } from '../types';
 import { CardListWrapper, Card, CardDetail, CardDetailNavigating } from './card';
 import { GuideModal, VerificationModal, CompletedModal } from './modal';
 import { fetchEventDetails } from '../apis';
-import { hostname } from 'os';
 import ScrollArea from '@/global/components/ScrollArea';
+import { useFetchEventDetailQuery } from '../hooks/useFetchEventDetailQuery';
 
 const cardMockData = {
   imageSrc: '/mockmap.png',
@@ -44,10 +44,11 @@ export default function GcoomGoBottom({
   const [isGuideModalOpen, setIsGuideModalOpen] = useState(false);
   const [isVerificationModalOpen, setIsVerificationModalOpen] = useState(false);
   const [isCompletedModalOpen, setIsCompletedModalOpen] = useState(false);
-  const [eventDetails, setEventDetails] = useState<EventDetailDto | null>(null);
+
+  const { data: eventDetails, isLoading, error } = useFetchEventDetailQuery(selectedId);
 
   const transformEventDetailsToCardProps = (
-    details: EventDetailDto | null
+    details: EventDetailDto | undefined
   ): {
     labelMinutes: number;
     title: string;
@@ -79,17 +80,6 @@ export default function GcoomGoBottom({
 
   const detailData = transformEventDetailsToCardProps(eventDetails);
 
-  useEffect(() => {
-    if (selectedId !== null) {
-      fetchEventDetails(selectedId)
-        .then((details) => {
-          setEventDetails(details);
-        })
-        .catch((error) => {
-          console.error('Error fetching event details:', error);
-        });
-    }
-  }, [selectedId]);
   return (
     <>
       {phase === 'initial' && (
