@@ -9,18 +9,19 @@ import type { MapItemDto } from '../types/dto';
 type Props = {
   data: MapItemDto;
   isSelected?: boolean;
+  onClick: () => void;
 };
 
-const MapPin = ({ data, isSelected }: Props) => {
-  const { title } = data;
+const MapPin = ({ data, isSelected, onClick }: Props) => {
+  const { destination, coordinate } = data;
 
   return (
-    <StyledWrapper $isSelected={isSelected}>
-      <div>
+    <StyledWrapper $isSelected={isSelected} css={{ left: coordinate[0], top: coordinate[1] }}>
+      <div onClick={onClick}>
         <StyledIconWrapper>
           <IconBell size={13} />
         </StyledIconWrapper>
-        <p>{title}</p>
+        <p>{destination}</p>
       </div>
       <IconPinArrow />
     </StyledWrapper>
@@ -32,6 +33,8 @@ export default MapPin;
 const StyledWrapper = styled.div<{ $isSelected?: boolean }>`
   width: fit-content;
 
+  position: absolute;
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -40,17 +43,20 @@ const StyledWrapper = styled.div<{ $isSelected?: boolean }>`
   > div {
     padding: 4px 8px 4px 4px;
     width: fit-content;
+
     border-radius: 20px;
+    border: 2px solid ${PIN_COLOR};
 
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 3px;
 
+    cursor: pointer;
+
     ${({ theme }) => theme.typography.button3}
 
     ${({ $isSelected }) => ({
-      border: $isSelected ? `2px solid ${PIN_COLOR}` : 'none',
       color: $isSelected ? PIN_COLOR : '#fff',
       backgroundColor: $isSelected ? '#fff' : PIN_COLOR,
     })};
