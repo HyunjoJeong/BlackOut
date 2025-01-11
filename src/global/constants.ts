@@ -1,0 +1,1 @@
+export const API_BASE_URL =  "https://jahayeon-back.fly.dev/api/v1";
