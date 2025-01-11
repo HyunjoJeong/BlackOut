@@ -1,13 +1,13 @@
-import Card from '@/features/featureB/components/Card';
-import CardListWrapper from '@/features/featureB/components/CardListWrapper';
+import Card from '@/features/featureB/components/card/Card';
+import CardListWrapper from '@/features/featureB/components/card/CardListWrapper';
 import MockMap from '@/features/featureB/components/MockMap';
 import { Footer, Header } from '@/global/layouts';
 import { useState } from 'react';
-import CardDetail from './CardDetail';
-import GuideModal from './GuideModal';
-import CardDetailNavigating from './CardDetailNavigating';
-import VerificationModal from './VerificationModal';
-import CompletedModal from './CompletedModal';
+import CardDetail from './card/CardDetail';
+import GuideModal from './modal/GuideModal';
+import CardDetailNavigating from './card/CardDetailNavigating';
+import VerificationModal from './modal/VerificationModal';
+import CompletedModal from './modal/CompletedModal';
 
 const cardMockData = {
   imageSrc: '/mockmap.png',

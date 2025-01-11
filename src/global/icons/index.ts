@@ -6,4 +6,5 @@ export * from './IconX';
 export * from './IconList';
 export * from './IconGCOOLogo';
 export * from './IconGCOOSymbol';
+export * from './IconGCOOMapPointer';
 export * from './IconBread';
