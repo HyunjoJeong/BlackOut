@@ -2,6 +2,7 @@ import React from 'react';
 import type { HTMLAttributes } from 'react';
 import Image from 'next/image';
 import { css, useTheme } from '@emotion/react';
+import { Chip } from '@/core';
 
 type CardProps = HTMLAttributes<HTMLDivElement> & {
   imageSrc: string;
@@ -30,16 +31,29 @@ const Card: React.FC<CardProps> = ({
       </div>
 
       <div css={contentWrapperStyle}>
-        <div css={labelStyle}>가장 가까운 지구로 {labelMinutes}분</div>
+        <Chip font="button3" variant="filledSecondary" css={{ padding: '10px' }}>
+          가장 가까운 지쿠로 {labelMinutes}분
+        </Chip>
 
         <div css={mainContentStyle}>
-          <div css={titleStyle}>{title}</div>
-          <div css={subtitleStyle}>{subtitle}</div>
+          <div css={[theme.typography.label0, { color: theme.colors.gray[600] }]}>{title}</div>
+          <div css={[theme.typography.label1, { color: theme.colors.gray[600] }]}>{subtitle}</div>
         </div>
 
         <div css={footerStyle}>
-          <div css={countInfoStyle}>{remainingCount}명 남음</div>
-          <div css={timeInfoStyle}>마감 {remainingMinutes}분 전</div>
+          <div>
+            <div
+              css={[
+                theme.typography.subTitle3,
+                { textAlign: 'right', color: theme.colors.gray[700] },
+              ]}
+            >
+              {remainingCount}명 남음
+            </div>
+            <div css={[theme.typography.label0, { textAlign: 'right', color: '#DC6667' }]}>
+              마감 {remainingMinutes}분 전
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -74,42 +88,15 @@ const contentWrapperStyle = css`
   flex-direction: column;
 `;
 
-const labelStyle = css`
-  background-color: #dfffd6;
-  color: #37a645;
-  padding: 4px 8px;
-  border-radius: 12px;
-  font-size: 12px;
-  font-weight: bold;
-  margin-bottom: 8px;
-  width: fit-content;
-`;
-
 const mainContentStyle = css`
   flex: 1;
   margin-bottom: 8px;
 `;
 
-const subtitleStyle = css`
-  font-size: 12px;
-  color: #777;
-`;
-
 const footerStyle = css`
   display: flex;
-  justify-content: space-between;
+  justify-content: right;
   align-items: center;
-`;
-
-const countInfoStyle = css`
-  font-size: 14px;
-  font-weight: bold;
-  color: #d54d4d;
-`;
-
-const timeInfoStyle = css`
-  font-size: 12px;
-  color: #d54d4d;
 `;
 
 export default Card;

@@ -15,8 +15,8 @@ const cardMockData = {
 };
 const detailMockData = {
   labelMinutes: 10,
-  title: '지구 환경 보호 캠페인',
-  subtitle: '함께 지구를 지켜요',
+  title: '마감 전 빵 20퍼센트 세일합니다.',
+  subtitle: '장블랑제리',
   address: '서울특별시 강남구 테헤란로 123',
   description:
     '지구 환경 보호를 위한 캠페인에 참여해주세요. 함께 지구를 지키는 작은 실천이 큰 변화를 만듭니다.',

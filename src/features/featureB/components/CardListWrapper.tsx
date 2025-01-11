@@ -1,10 +1,11 @@
+import Divider from '@/global/components/Divider';
 import { css } from '@emotion/react';
 import { ReactNode } from 'react';
 
 const CardListWrapper = ({ children }: { children: ReactNode }) => {
   return (
     <div css={wrapperStyle}>
-      <div css={dividerStyle}></div>
+      <Divider />
       <div css={cardListStyle}>{children}</div>
     </div>
   );
@@ -24,14 +25,6 @@ const wrapperStyle = css`
   padding: 16px;
   width: 100%;
   max-width: 600px;
-`;
-
-const dividerStyle = css`
-  height: 4px;
-  width: 45px;
-  background-color: #ddd;
-  margin: 0 auto 16px auto;
-  border-radius: 100px;
 `;
 
 const cardListStyle = css`

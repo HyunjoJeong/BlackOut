@@ -1,6 +1,7 @@
 /** @jsxImportSource @emotion/react */
+import { Button, Chip } from '@/core';
 import Divider from '@/global/components/Divider';
-import { css } from '@emotion/react';
+import { css, useTheme } from '@emotion/react';
 import type { HTMLAttributes } from 'react';
 
 type CardDetailProps = HTMLAttributes<HTMLDivElement> & {
@@ -22,25 +23,50 @@ const CardDetail: React.FC<CardDetailProps> = ({
   remainingCount,
   remainingMinutes,
 }) => {
+  const theme = useTheme();
+
   return (
     <div css={wrapperStyle}>
       <Divider />
 
-      <div css={labelStyle}>가장 가까운 지구로 {labelMinutes}분</div>
+      <Chip variant="filledSecondary" font="button3" css={{ padding: '10px' }}>
+        가장 가까운 지구로 {labelMinutes}분
+      </Chip>
 
       <div css={infoStyle}>
-        <h2 css={titleStyle}>{title}</h2>
-        <p css={subtitleStyle}>{subtitle}</p>
-        <p css={addressStyle}>{address}</p>
+        <div css={theme.typography.subTitle3}>{title}</div>
+        <div css={[theme.typography.label0, { color: theme.colors.gray[600] }]}>{subtitle}</div>
+        <div css={[theme.typography.label1, { color: theme.colors.gray[600] }]}>{address}</div>
       </div>
 
-      <div css={descriptionStyle}>{description}</div>
+      <div
+        css={[
+          descriptionStyle,
+          theme.typography.body1,
+          { color: theme.colors.gray[700], backgroundColor: theme.colors.gray[100] },
+        ]}
+      >
+        {description}
+      </div>
 
       <div css={footerStyle}>
-        <button css={buttonStyle}>참여하기</button>
+        <Button variant="filledPrimary" font="button1" css={{ padding: '12px 80px' }}>
+          참여하기
+        </Button>
         <div css={footerInfoStyle}>
-          <p css={peopleLeftStyle}>{remainingCount}명 남음</p>
-          <p css={timeLeftStyle}>마감 {remainingMinutes}분 전</p>
+          <div>
+            <div
+              css={[
+                theme.typography.subTitle3,
+                { textAlign: 'right', color: theme.colors.gray[700] },
+              ]}
+            >
+              {remainingCount}명 남음
+            </div>
+            <div css={[theme.typography.label0, { textAlign: 'right', color: '#DC6667' }]}>
+              마감 {remainingMinutes}분 전
+            </div>
+          </div>
         </div>
       </div>
     </div>
