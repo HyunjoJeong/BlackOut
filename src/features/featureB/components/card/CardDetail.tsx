@@ -2,41 +2,34 @@ import { Button, Chip } from '@/core';
 import Divider from '@/global/components/Divider';
 import { css, useTheme } from '@emotion/react';
 import type { HTMLAttributes } from 'react';
+import { EventDetailDto } from '../../types';
 
 type CardDetailProps = HTMLAttributes<HTMLDivElement> & {
-  labelMinutes: number;
-  title: string;
-  subtitle: string;
-  address: string;
-  description: string;
-  remainingCount: number;
-  remainingMinutes: number;
+  eventDetail?: EventDetailDto;
   onConfirm: () => void;
 };
 
-const CardDetail: React.FC<CardDetailProps> = ({
-  labelMinutes,
-  title,
-  subtitle,
-  address,
-  description,
-  remainingCount,
-  remainingMinutes,
-  onConfirm,
-  ...props
-}) => {
+const CardDetail: React.FC<CardDetailProps> = ({ eventDetail, onConfirm, ...props }) => {
   const theme = useTheme();
 
+  if (!eventDetail) return null;
+  const currentTime = new Date();
+  const expiryTime = new Date(eventDetail.expiry);
+  const remainingMinutes = Math.floor((expiryTime.getTime() - currentTime.getTime()) / (1000 * 60)); // 남은 시간(분 단위)
   return (
     <div {...props} css={wrapperStyle}>
       <Chip variant="filledSecondary" font="button3" css={{ padding: '10px' }}>
-        가장 가까운 지구로 {labelMinutes}분
+        가장 가까운 지구로 5분
       </Chip>
 
       <div css={infoStyle}>
-        <div css={theme.typography.subTitle3}>{title}</div>
-        <div css={[theme.typography.label0, { color: theme.colors.gray[600] }]}>{subtitle}</div>
-        <div css={[theme.typography.label1, { color: theme.colors.gray[600] }]}>{address}</div>
+        <div css={theme.typography.subTitle3}>{eventDetail.title}</div>
+        <div css={[theme.typography.label0, { color: theme.colors.gray[600] }]}>
+          {eventDetail.host_name}
+        </div>
+        <div css={[theme.typography.label1, { color: theme.colors.gray[600] }]}>
+          {eventDetail.destination}
+        </div>
       </div>
 
       <div
@@ -46,7 +39,7 @@ const CardDetail: React.FC<CardDetailProps> = ({
           { color: theme.colors.gray[700], backgroundColor: theme.colors.gray[100] },
         ]}
       >
-        {description}
+        {eventDetail.description}
       </div>
 
       <div css={footerStyle}>
@@ -55,7 +48,7 @@ const CardDetail: React.FC<CardDetailProps> = ({
           variant="filledPrimary"
           font="button1"
           css={{ padding: '12px 70px' }}
-          disabled={remainingCount <= 0}
+          disabled={eventDetail.remaining_num <= 0}
         >
           참여하기
         </Button>
@@ -67,7 +60,7 @@ const CardDetail: React.FC<CardDetailProps> = ({
                 { textAlign: 'right', color: theme.colors.gray[700] },
               ]}
             >
-              {remainingCount}명 남음
+              {eventDetail.remaining_num}명 남음
             </div>
             <div css={[theme.typography.label0, { textAlign: 'right', color: '#DC6667' }]}>
               마감 {remainingMinutes}분 전
