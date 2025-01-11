@@ -1,5 +1,4 @@
 import { defaultQueryClient } from '@/config/react-query';
-import { MobileLayout } from '@/global/layouts';
 import '@/global/styles/globals.css';
 import { theme } from '@/global/styles/theme';
 import { ThemeProvider } from '@emotion/react';
@@ -17,9 +16,7 @@ export default function App({ Component, pageProps }: AppProps) {
       </Head>
       <QueryClientProvider client={defaultQueryClient}>
         <ThemeProvider theme={theme}>
-          <MobileLayout>
-            <Component {...pageProps} />
-          </MobileLayout>
+          <Component {...pageProps} />
         </ThemeProvider>
       </QueryClientProvider>
     </>
