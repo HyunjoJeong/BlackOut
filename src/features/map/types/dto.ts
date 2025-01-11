@@ -5,5 +5,5 @@ export type MapItemDto = {
   id: number;
   title: string;
   destination: string;
-  coordinate: Coordinates;
+  coordinates: Coordinates;
 };
