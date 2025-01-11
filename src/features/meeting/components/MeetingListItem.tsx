@@ -14,12 +14,12 @@ const MOCK_IMAGE =
 const MeetingListItem = ({ data }: Props) => {
   const router = useRouter();
 
-  const { title, destination } = data;
+  const { id, title, destination } = data;
 
   return (
     <StyledWrapper>
       <Image src={MOCK_IMAGE} alt={title} width={110} height={140} />
-      <StyledInfosWrapper>
+      <StyledInfosWrapper onClick={() => router.push(`/meetings/${id}`)}>
         <Chip variant="filledSecondary" css={{ padding: '6px 12px' }}>
           가장 가까운 지쿠로 5분
         </Chip>
@@ -53,6 +53,8 @@ const StyledWrapper = styled.div`
 const StyledInfosWrapper = styled.div`
   flex-shrink: 0;
   flex-grow: 1;
+
+  cursor: pointer;
 
   h2 {
     margin: 8px 0 4px;
