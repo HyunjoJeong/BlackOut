@@ -85,6 +85,7 @@ const CardDetailNavigating: React.FC<CardDetailNavigatingProps> = ({
           도착완료
         </Button>
       </div>
+      <div css={{ height: '30px' }}></div>
     </div>
   );
 };

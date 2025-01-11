@@ -68,6 +68,7 @@ const CardDetail: React.FC<CardDetailProps> = ({ eventDetail, onConfirm, ...prop
           </div>
         </div>
       </div>
+      <div css={{ height: '30px' }}></div>
     </div>
   );
 };
