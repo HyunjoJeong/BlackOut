@@ -1,15 +1,16 @@
-import { useState } from 'react';
-import type { EventDto, Phase } from '../types';
-import GcoomGoBottom from './GcoomGoBottom';
-import Map from '../../map/components/Map';
+import { Chip } from '@/core';
 import { MOCKUP_DATA } from '@/features/map/constants';
 import type { MapItemDto } from '@/features/map/types/dto';
-import { useFetchEventListQuery } from '../hooks/useFetchEventListQuery';
 import BottomSheet from '@/global/components/BottomSheet';
-import ScrollArea from '@/global/components/ScrollArea';
+import { css } from '@emotion/react';
+import { useState } from 'react';
+import Map from '../../map/components/Map';
+import { useFetchEventListQuery } from '../hooks/useFetchEventListQuery';
+import type { EventDto, Phase } from '../types';
+import GcoomGoBottom from './GcoomGoBottom';
 
 export default function GCOOMGO() {
-  const [phase, setPhase] = useState<Phase>('initial');
+  const [phase, setPhase] = useState<Phase>('navigate');
   const [selectedId, setSelectedId] = useState<number | null>(null);
   const [pinData, setPinData] = useState<MapItemDto[]>(MOCKUP_DATA);
 
@@ -35,6 +36,21 @@ export default function GCOOMGO() {
 
   return (
     <>
+      <div css={header1}>
+        <Chip variant="outlinedPrimary" css={{ padding: '5px' }}>
+          음식/디저트
+        </Chip>
+        <Chip variant="outlinedAssistive" css={{ padding: '5px' }}>
+          쇼핑
+        </Chip>
+        <Chip variant="outlinedAssistive" css={{ padding: '5px' }}>
+          뷰티/관리
+        </Chip>
+        <Chip variant="outlinedAssistive" css={{ padding: '5px' }}>
+          문화 여가
+        </Chip>
+      </div>
+
       <Map
         datas={pinData}
         selectedId={selectedId}
@@ -60,3 +76,21 @@ export default function GCOOMGO() {
     </>
   );
 }
+
+const header1 = css`
+  display: flex;
+  padding-left: 10px;
+  gap: 5px;
+  height: 30px;
+  margin-bottom: 10px;
+  background-color: #fff;
+`;
+const header2 = css`
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+  gap: 5px;
+  height: 100px;
+  margin-bottom: 10px;
+  background-color: #fff;
+`;
