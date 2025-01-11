@@ -1,7 +1,7 @@
 import Map from '@/features/map/components/Map';
-import { MOCKUP_DATA } from '@/features/map/constants';
+import MeetingList from '@/features/meeting/components/MeetingList';
+import { MEET_LIST_MOCKUP } from '@/features/meeting/constants';
 import BottomSheet from '@/global/components/BottomSheet';
-import ScrollArea from '@/global/components/ScrollArea';
 import { Header } from '@/global/layouts';
 import { useState } from 'react';
 
@@ -16,14 +16,9 @@ const MeetingMainPage = () => {
     <>
       <Header center={'지쿰 만나'} />
       <main>
-        <Map datas={MOCKUP_DATA} selectedId={selectedId} onItemClick={handleClick} />
+        <Map datas={MEET_LIST_MOCKUP} selectedId={selectedId} onItemClick={handleClick} />
         <BottomSheet>
-          <ScrollArea maxHeight={240}>
-            <div style={{ height: 100, background: 'red' }}>하이</div>
-            <div style={{ height: 100, background: 'yellow' }}>하이</div>
-            <div style={{ height: 100, background: 'green' }}>하이</div>
-            <div style={{ height: 100, background: 'blue' }}>하이</div>
-          </ScrollArea>
+          <MeetingList />
         </BottomSheet>
       </main>
     </>
