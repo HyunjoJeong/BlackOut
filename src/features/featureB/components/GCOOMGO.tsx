@@ -2,7 +2,7 @@ import { Chip } from '@/core';
 import BottomSheet from '@/global/components/BottomSheet';
 import { css } from '@emotion/react';
 import { useState } from 'react';
-import Map from '../../map/components/Map';
+import Map from './Map';
 import { useFetchEventListQuery } from '../hooks/useFetchEventListQuery';
 import type { Phase } from '../types';
 import GcoomGoBottom from './GcoomGoBottom';

@@ -49,38 +49,8 @@ export default function GcoomGoBottom({
 
   const { data: eventDetails, isLoading, error } = useFetchEventDetailQuery(selectedId);
 
-  const transformEventDetailsToCardProps = (
-    details: EventDetailDto | undefined
-  ): {
-    labelMinutes: number;
-    title: string;
-    subtitle: string;
-    address: string;
-    description: string;
-    remainingCount: number;
-    remainingMinutes: number;
-  } | null => {
-    if (!details) return null;
-
-    const currentTime = new Date();
-    const expiryTime = new Date(details.expiry);
-    const remainingMinutes = Math.max(
-      Math.floor((expiryTime.getTime() - currentTime.getTime()) / (1000 * 60)),
-      0
-    ); // 음수 방지
-
-    return {
-      labelMinutes: remainingMinutes,
-      title: details.title,
-      subtitle: details.host_name, // 호스트 이름을 subtitle로 매핑
-      address: details.destination,
-      description: details.description,
-      remainingCount: details.remaining_num,
-      remainingMinutes,
-    };
-  };
-
-  const detailData = transformEventDetailsToCardProps(eventDetails);
+  isLoading && <div>Loading...</div>;
+  error && <div>Error!</div>;
 
   return (
     <>
@@ -149,7 +119,7 @@ export default function GcoomGoBottom({
           onConfirm={() => {
             setIsGuideModalOpen(true);
           }}
-          {...(detailData ?? detailMockData)}
+          eventDetail={eventDetails}
         />
       )}
 
@@ -161,7 +131,7 @@ export default function GcoomGoBottom({
           onCancel={() => {
             setPhase('eventInfo');
           }}
-          {...(detailData ?? detailMockData)}
+          eventDetail={eventDetails}
         />
       )}
 

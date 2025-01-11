@@ -34,8 +34,8 @@ const Card: React.FC<CardProps> = ({
         </Chip>
 
         <div css={mainContentStyle}>
-          <div css={[theme.typography.label0, { color: theme.colors.gray[600] }]}>{title}</div>
-          <div css={[theme.typography.label1, { color: theme.colors.gray[600] }]}>{hostname}</div>
+          <div css={[theme.typography.subTitle3, { color: theme.colors.gray[800] }]}>{title}</div>
+          <div css={[theme.typography.label0, { color: theme.colors.gray[700] }]}>{hostname}</div>
         </div>
 
         <div css={footerStyle}>
