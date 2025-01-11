@@ -3,3 +3,6 @@
 export * from './IconHome';
 export * from './IconBell';
 export * from './IconX';
+export * from './IconList';
+export * from './IconGCOOLogo';
+export * from './IconGCOOSymbol';
