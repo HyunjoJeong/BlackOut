@@ -13,10 +13,10 @@ type Props = {
 };
 
 const MapPin = ({ data, isSelected, onClick }: Props) => {
-  const { destination, coordinate } = data;
+  const { destination, coordinates } = data;
 
   return (
-    <StyledWrapper $isSelected={isSelected} css={{ left: coordinate[0], top: coordinate[1] }}>
+    <StyledWrapper $isSelected={isSelected} css={{ left: coordinates[0], top: coordinates[1] }}>
       <div onClick={onClick}>
         <StyledIconWrapper>
           <IconBell size={13} />
