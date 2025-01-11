@@ -1,7 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  domains: ['https://jahayeon-back.fly.dev/api/v1'],
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'stlgehffhjwkneboewar.supabase.co',
+      },
+    ],
+  },
 };
 
 export default nextConfig;
