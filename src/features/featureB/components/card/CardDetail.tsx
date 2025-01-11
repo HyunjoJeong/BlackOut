@@ -57,6 +57,7 @@ const CardDetail: React.FC<CardDetailProps> = ({
           variant="filledPrimary"
           font="button1"
           css={{ padding: '12px 80px' }}
+          disabled={remainingCount <= 0}
         >
           참여하기
         </Button>

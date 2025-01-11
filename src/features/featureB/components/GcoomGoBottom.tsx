@@ -144,6 +144,7 @@ export default function GcoomGoBottom({
       )}
 
       <GuideModal
+        selectedId={selectedId}
         isOpen={isGuideModalOpen}
         onClose={() => {
           setIsGuideModalOpen(false);
@@ -155,6 +156,7 @@ export default function GcoomGoBottom({
       ></GuideModal>
 
       <VerificationModal
+        selectedId={selectedId}
         isOpen={isVerificationModalOpen}
         onClose={() => {
           setIsVerificationModalOpen(false);

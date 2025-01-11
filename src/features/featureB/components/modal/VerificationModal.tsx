@@ -3,19 +3,28 @@ import Modal from 'react-modal';
 import { css, useTheme } from '@emotion/react';
 import { IconX } from '@/global/icons';
 import CodeInput from './CodeInput';
+import { postEventComplete } from '../../apis';
+import { on } from 'events';
 
 interface VerificationModalProps {
   isOpen: boolean;
   onClose: () => void;
   onConfirm: () => void;
+  selectedId: number | null;
 }
 
 Modal.setAppElement('#__next'); // Next.js 사용 시 접근성 설정
 
-const VerificationModal: React.FC<VerificationModalProps> = ({ isOpen, onClose, onConfirm }) => {
+const VerificationModal: React.FC<VerificationModalProps> = ({
+  isOpen,
+  onClose,
+  onConfirm,
+  selectedId,
+}) => {
   const theme = useTheme();
   const [code, setCode] = useState('');
   const [isCompleted, setIsCompleted] = useState(false);
+  const [isWrong, setIsWrong] = useState(true);
 
   const handleCodeComplete = (enteredCode: string) => {
     setCode(enteredCode);
@@ -61,14 +70,23 @@ const VerificationModal: React.FC<VerificationModalProps> = ({ isOpen, onClose, 
 
         <CodeInput length={4} onComplete={handleCodeComplete} />
 
+        {isWrong && (
+          <p css={[theme.typography.body2, { color: 'red' }]}>
+            잘못된 코드입니다. 다시 시도해주세요.
+          </p>
+        )}
+
         <button
           css={buttonStyle(isCompleted)}
           onClick={() => {
-            if (isCompleted) alert(`참여 코드: ${code}`);
-
             setCode('');
             setIsCompleted(false);
-            onConfirm();
+            if (!selectedId) return;
+            postEventComplete(selectedId, code)
+              .then((_) => {
+                onConfirm();
+              })
+              .catch((_) => {});
           }}
           disabled={!isCompleted} // 입력이 완료되지 않으면 버튼 비활성화
         >
