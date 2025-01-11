@@ -1,13 +1,13 @@
 import Card from '@/features/featureB/components/card/Card';
 import CardListWrapper from '@/features/featureB/components/card/CardListWrapper';
-import MockMap from '@/features/featureB/components/MockMap';
-import { Footer, Header } from '@/global/layouts';
+import Map from '@/features/map/components/Map';
+import { Footer } from '@/global/layouts';
 import { useState } from 'react';
 import CardDetail from './card/CardDetail';
-import GuideModal from './modal/GuideModal';
 import CardDetailNavigating from './card/CardDetailNavigating';
-import VerificationModal from './modal/VerificationModal';
 import CompletedModal from './modal/CompletedModal';
+import GuideModal from './modal/GuideModal';
+import VerificationModal from './modal/VerificationModal';
 
 const cardMockData = {
   imageSrc: '/mockmap.png',
@@ -36,7 +36,7 @@ export default function GCOOMGO() {
 
   return (
     <>
-      <MockMap></MockMap>
+      <Map selectedId={3} datas={[]} onItemClick={() => {}} />
       {phase === 'initial' && (
         <CardListWrapper>
           <Card
