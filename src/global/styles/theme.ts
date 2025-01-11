@@ -7,7 +7,7 @@ const fontWeights = {
 
 export const theme = {
   colors: {
-    primary: '#35D32F',
+    primary: '#28C86E',
     secondary: '#E5FFE4',
     gray: {
       0: '#FFFFFF',
