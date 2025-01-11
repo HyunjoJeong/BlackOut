@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import type { Phase } from '../types';
+import type { EventDto, Phase } from '../types';
 import { CardListWrapper, Card, CardDetail, CardDetailNavigating } from './card';
 import { GuideModal, VerificationModal, CompletedModal } from './modal';
 
@@ -27,6 +27,7 @@ type GcoomGoBottomProps = {
   setPhase: (phase: Phase) => void;
   selectedId: number | null;
   setSelectedId: (id: number | null) => void;
+  eventList?: EventDto[];
 };
 
 export default function GcoomGoBottom({
@@ -34,6 +35,7 @@ export default function GcoomGoBottom({
   setPhase,
   selectedId,
   setSelectedId,
+  eventList,
 }: GcoomGoBottomProps) {
   const [isGuideModalOpen, setIsGuideModalOpen] = useState(false);
   const [isVerificationModalOpen, setIsVerificationModalOpen] = useState(false);
@@ -43,14 +45,33 @@ export default function GcoomGoBottom({
     <>
       {phase === 'initial' && (
         <CardListWrapper>
-          <Card
-            onClick={() => {
-              setPhase('eventInfo');
-            }}
-            {...cardMockData}
-          ></Card>
-          <Card {...cardMockData}></Card>
-          <Card {...cardMockData}></Card>
+          {eventList?.map((event_) => {
+            const currentTime = new Date();
+            const expiryTime = new Date(event_.expiry);
+            const remainingMinutes = Math.floor(
+              (expiryTime.getTime() - currentTime.getTime()) / (1000 * 60)
+            ); // 남은 시간(분 단위)
+
+            // 변환된 데이터 구조
+            const transformedEvent = {
+              imageSrc: event_.image_url, // 이미지 URL
+              title: event_.title, // 이벤트 제목
+              hostname: event_.host_name, // 호스트 이름
+              remainingCount: event_.remaining_num, // 남은 인원 수
+              remainingMinutes: Math.max(remainingMinutes, 0), // 남은 시간(분), 음수가 되지 않도록 처리
+            };
+
+            return (
+              <Card
+                onClick={() => {
+                  setPhase('eventInfo');
+                  setSelectedId(Number(event_.id));
+                }}
+                key={event_.id}
+                {...transformedEvent}
+              ></Card>
+            );
+          })}
         </CardListWrapper>
       )}
 

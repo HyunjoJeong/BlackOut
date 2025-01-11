@@ -6,18 +6,16 @@ import { Chip } from '@/core';
 
 type CardProps = HTMLAttributes<HTMLDivElement> & {
   imageSrc: string;
-  labelMinutes: number;
   title: string;
-  subtitle: string;
+  hostname: string;
   remainingCount: number;
   remainingMinutes: number;
 };
 
 const Card: React.FC<CardProps> = ({
   imageSrc,
-  labelMinutes,
   title,
-  subtitle,
+  hostname,
   remainingCount,
   remainingMinutes,
   ...props
@@ -32,12 +30,12 @@ const Card: React.FC<CardProps> = ({
 
       <div css={contentWrapperStyle}>
         <Chip font="button3" variant="filledSecondary" css={{ padding: '10px' }}>
-          가장 가까운 지쿠로 {labelMinutes}분
+          가장 가까운 지쿠로 5분
         </Chip>
 
         <div css={mainContentStyle}>
           <div css={[theme.typography.label0, { color: theme.colors.gray[600] }]}>{title}</div>
-          <div css={[theme.typography.label1, { color: theme.colors.gray[600] }]}>{subtitle}</div>
+          <div css={[theme.typography.label1, { color: theme.colors.gray[600] }]}>{hostname}</div>
         </div>
 
         <div css={footerStyle}>
