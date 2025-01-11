@@ -1,3 +1,3 @@
 export const Header = () => {
-  return <header role="banner"></header>;
+  return <header role="banner"> </header>;
 };
