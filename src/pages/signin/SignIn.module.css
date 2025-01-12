@@ -1,0 +1,27 @@
+.container {
+  width: 100%;
+  height: 100vh;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo {
+  position: absolute;
+  top: 55%;
+  transform: translateY(-50%);
+  /* 이미지 크기 조절이 필요한 경우 width 속성 추가 */
+  width: 240px;
+  height: auto;
+}
+
+.googleLogin {
+  position: absolute;
+  top: calc(40% + 300px + 30px); /* logo의 top(40%) + logo height(대략 300px) + 간격(30px) */
+  transform: translateY(-50%);
+  cursor: pointer;
+  width: 328px;
+  height: auto;
+  cursor: pointer;
+}
