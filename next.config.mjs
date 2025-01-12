@@ -9,7 +9,7 @@ const nextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'namu.wiki',
+        hostname: 'i.namu.wiki',
       },
     ],
   },
