@@ -3,6 +3,7 @@ import axios, { AxiosError, type AxiosResponse } from 'axios';
 export const APIServer = axios.create({
   baseURL: 'https://jahayeon-back.fly.dev/api/v1',
   headers: { 'Content-Type': `application/json` },
+  withCredentials: true
 });
 
 // * 2XX Response handler
