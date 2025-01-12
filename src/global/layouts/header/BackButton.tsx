@@ -17,4 +17,5 @@ export default BackButton;
 const StyledWrapper = styled.div`
   width: fit-content;
   line-height: 0;
+  cursor: pointer;
 `;

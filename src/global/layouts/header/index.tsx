@@ -11,7 +11,6 @@ export const Header = ({ left, center, right }: Props) => {
   return (
     <StyledHeader role="banner">
       {left}
-      <CenterItemsWrapper>{center}</CenterItemsWrapper>
       {right}
     </StyledHeader>
   );

@@ -2,10 +2,10 @@ import { Chip } from '@/core';
 import styled from '@emotion/styled';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import type { MeetItemDto } from '../types/dto';
+import type { PartyListItemDto } from '../types/dto';
 
 type Props = {
-  data: MeetItemDto;
+  data: PartyListItemDto;
 };
 
 const MOCK_IMAGE =
