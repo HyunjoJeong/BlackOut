@@ -72,7 +72,6 @@ export default function GcoomGoBottom({
                 remainingCount: event_.remaining_num, // 남은 인원 수
                 remainingMinutes: Math.max(remainingMinutes, 0), // 남은 시간(분), 음수가 되지 않도록 처리
               };
-              console.log(transformedEvent.imageSrc);
 
               return (
                 <Card
