@@ -8,17 +8,14 @@ type Props = {
   data: PartyListItemDto;
 };
 
-const MOCK_IMAGE =
-  'https://stlgehffhjwkneboewar.supabase.co/storage/v1/object/public/images/028997f1-519b-44cb-b9d3-a1ba3bc8cf19.png';
-
 const MeetingListItem = ({ data }: Props) => {
   const router = useRouter();
 
-  const { id, title, destination } = data;
+  const { id, title, destination, image_url } = data;
 
   return (
     <StyledWrapper>
-      <Image src={MOCK_IMAGE} alt={title} width={110} height={140} />
+      <Image src={image_url} alt={title} width={110} height={140} />
       <StyledInfosWrapper onClick={() => router.push(`/meetings/${id}`)}>
         <Chip variant="filledSecondary" css={{ padding: '6px 12px' }}>
           가장 가까운 지쿠로 5분

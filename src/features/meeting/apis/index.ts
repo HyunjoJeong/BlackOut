@@ -17,7 +17,9 @@ export const getMyParty = async () => {
 };
 
 export const createNewParty = async (formData: MeetingFormData) => {
-  await APIServer.post('/create/', formData, { headers: { 'Content-Type': 'multipart/form-data' } });
+  await APIServer.post('/create/', formData, {
+    headers: { 'Content-Type': 'multipart/form-data' },
+  });
 };
 
 export const postPartyJoin = async (partyId: number) => {
@@ -27,6 +29,11 @@ export const postPartyJoin = async (partyId: number) => {
 
 export const postPartyStart = async (partyId: number) => {
   const { data } = await APIServer.post(`/parties/${partyId}/start/`);
+  return data;
+};
+
+export const postRideEnd = async (partyId: number) => {
+  const { data } = await APIServer.post(`/parties/${partyId}/endride/`);
   return data;
 };
 

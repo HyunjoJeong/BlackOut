@@ -13,6 +13,7 @@ export type PartyListItemDto = {
   coordinates: Coordinates;
   parking_spot: Coordinates;
   state: PartyState;
+  image_url: string;
 };
 
 export type ParticipantDto = {

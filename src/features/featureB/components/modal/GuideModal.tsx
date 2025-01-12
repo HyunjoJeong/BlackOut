@@ -24,17 +24,16 @@ const GuideModal: React.FC<GuideModalProps> = ({ isOpen, onClose, onConfirm, sel
       style={{
         overlay: {
           backgroundColor: 'rgba(0, 0, 0, 0.5)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
         },
         content: {
-          padding: '0',
+          padding: '16px',
           border: 'none',
           borderRadius: '16px',
+          backgroundColor: '#fff',
           width: '328px',
-          height: '306px',
-          maxWidth: '400px',
-          margin: 'auto',
-          inset: '50% auto auto 50%',
-          transform: 'translate(-50%, -50%)',
         },
       }}
     >
@@ -64,7 +63,8 @@ const GuideModal: React.FC<GuideModalProps> = ({ isOpen, onClose, onConfirm, sel
             css={{
               backgroundColor: theme.colors.gray[300],
               color: theme.colors.gray[0],
-              padding: '16px 56px',
+              padding: '16px 42px',
+              flex: '1 0',
             }}
             onClick={onClose}
           >
@@ -72,7 +72,7 @@ const GuideModal: React.FC<GuideModalProps> = ({ isOpen, onClose, onConfirm, sel
           </Button>
           <Button
             variant="filledPrimary"
-            css={{ padding: '16px 42px' }}
+            css={{ padding: '16px 42px', flex: '1 0' }}
             onClick={() => {
               if (selectedId) {
                 postEventJoin(selectedId);
@@ -91,10 +91,6 @@ const GuideModal: React.FC<GuideModalProps> = ({ isOpen, onClose, onConfirm, sel
 export default GuideModal;
 
 const modalContentStyle = css`
-  background: #ffffff;
-  border-radius: 16px;
-  padding: 16px;
-  padding-bottom: 0px;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -165,4 +161,5 @@ const footerStyle = css`
   display: flex;
   justify-content: space-between;
   margin-top: 16px;
+  gap: 12px;
 `;

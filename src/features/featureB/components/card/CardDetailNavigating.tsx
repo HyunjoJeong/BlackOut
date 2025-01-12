@@ -70,7 +70,8 @@ const CardDetailNavigating: React.FC<CardDetailNavigatingProps> = ({
           font="button1"
           variant="outlinedAssistive"
           css={{
-            padding: '16px 40px',
+            padding: '16px 28px',
+            flex: '1 0',
           }}
           onClick={onCancel}
         >
@@ -79,7 +80,7 @@ const CardDetailNavigating: React.FC<CardDetailNavigatingProps> = ({
         <Button
           font="button1"
           variant="filledPrimary"
-          css={{ padding: '16px 40px' }}
+          css={{ padding: '16px 28px', flex: '1 0' }}
           onClick={onConfirm}
         >
           도착완료

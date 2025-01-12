@@ -1,11 +1,16 @@
 import { Button, Chip } from '@/core';
-import { postPartyJoin, postPartyStart } from '@/features/meeting/apis';
+import { postPartyJoin, postPartyStart, postRideEnd } from '@/features/meeting/apis';
 import PartyJoinCompleteModal from '@/features/meeting/components/PartyJoinCompleteModal';
 import PartyJoinModal from '@/features/meeting/components/PartyJoinModal';
-import { usePartyDetailQuery } from '@/features/meeting/hooks/usePartyDetailQuery';
+import RideEndModal from '@/features/meeting/components/RIdeEndModal';
+import {
+  PARTY_DETAIL_QUERY_KEY,
+  usePartyDetailQuery,
+} from '@/features/meeting/hooks/usePartyDetailQuery';
 import { Header } from '@/global/layouts';
 import BackButton from '@/global/layouts/header/BackButton';
 import styled from '@emotion/styled';
+import { useQueryClient } from '@tanstack/react-query';
 import type { GetServerSidePropsContext, InferGetServerSidePropsType } from 'next';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
@@ -14,11 +19,13 @@ import { useState } from 'react';
 type PageProps = InferGetServerSidePropsType<typeof getServerSideProps>;
 
 const PartyDetailPage = ({ partyId }: PageProps) => {
+  const queryClient = useQueryClient();
   const { data } = usePartyDetailQuery(partyId);
 
   const router = useRouter();
   const [isJoinModalOpen, setIsJoinModalOpen] = useState(false);
   const [isCompleteModalOpen, setIsCompleteModalOpen] = useState(false);
+  const [isRideEndModalOpen, setIsRideEndModalOpen] = useState(false);
 
   const handleJoinClick = () => {
     setIsJoinModalOpen(true);
@@ -41,7 +48,20 @@ const PartyDetailPage = ({ partyId }: PageProps) => {
 
   const handleStartClick = async () => {
     const data = await postPartyStart(partyId);
-    if (data?.msg) router.replace({ query: router.query });
+    if (data?.msg) queryClient.invalidateQueries({ queryKey: [PARTY_DETAIL_QUERY_KEY] });
+  };
+
+  const handleEndRideClick = async () => {
+    const data = await postRideEnd(partyId);
+    if (data) {
+      setIsRideEndModalOpen(true);
+      queryClient.invalidateQueries({ queryKey: [PARTY_DETAIL_QUERY_KEY] });
+    }
+  };
+
+  const handleEndRideModalConfirmClick = () => {
+    setIsRideEndModalOpen(false);
+    router.push('/');
   };
 
   if (!data) return null;
@@ -120,6 +140,21 @@ const PartyDetailPage = ({ partyId }: PageProps) => {
               </Button>
             </>
           )}
+          {available_action === 'END_RIDE' && (
+            <>
+              <Button variant="outlinedAssistive" font="button1" onClick={router.back}>
+                취소하기
+              </Button>
+              <Button variant="filledPrimary" font="button1" onClick={handleEndRideClick}>
+                운행종료
+              </Button>
+            </>
+          )}
+          {available_action === 'PHOTO' && (
+            <Button variant="filledPrimary" font="button1">
+              인증샷 남기기
+            </Button>
+          )}
         </StyledButtonsWrapper>
         <PartyJoinModal
           isOpen={isJoinModalOpen}
@@ -130,6 +165,7 @@ const PartyDetailPage = ({ partyId }: PageProps) => {
           isOpen={isCompleteModalOpen}
           onConfirmClick={handleCompleteModalConfirmClick}
         />
+        <RideEndModal isOpen={isRideEndModalOpen} onConfirmClick={handleEndRideModalConfirmClick} />
       </StyledMain>
     </>
   );
@@ -146,7 +182,7 @@ export const getServerSideProps = async ({ req, res, query }: GetServerSideProps
 };
 
 const StyledMain = styled.main`
-  padding: 16px 16px 24px;
+  padding: 16px 16px 72px;
 
   h2 {
     margin-top: 8px;
