@@ -1,15 +1,48 @@
-import GCOOMGO from '@/features/featureB/components/GCOOMGO';
-import { Footer, Header } from '@/global/layouts';
-import { initGoogleLogin } from '@/global/utils';
+import styled from '@emotion/styled';
+import Image from 'next/image';
+import { useRouter } from 'next/router';
 
 export default function Home() {
+  const router = useRouter();
+
   return (
     <>
-      <Header left={<div>뒤로 가기</div>} right={<div>기타 버튼들</div>} />
-      <main>홈 페이지</main>
-      <button onClick={initGoogleLogin}>로그인</button>
-      <GCOOMGO></GCOOMGO>
-      <Footer />
+      <main>
+        <Image src={'/mainpage.png'} alt="메인화면 ㅋ" fill />
+        <InvisibileButton
+          css={{
+            width: 180,
+            height: 32,
+            top: 120,
+            left: 32,
+          }}
+          onClick={() => router.push('/meetings/2')}
+        />
+        <InvisibileButton
+          css={{
+            width: 160,
+            height: 144,
+            left: 12,
+            bottom: 20,
+          }}
+          onClick={() => router.push('/depart')}
+        />
+        <InvisibileButton
+          css={{
+            width: 160,
+            height: 144,
+            right: 12,
+            bottom: 20,
+          }}
+          onClick={() => router.push('/meetings')}
+        />
+      </main>
     </>
   );
 }
+
+const InvisibileButton = styled.button`
+  border: none;
+  background-color: transparent;
+  position: fixed;
+`;

@@ -1,12 +1,15 @@
 import Map from '@/features/map/components/Map';
+import { getPartyList } from '@/features/meeting/apis';
 import MeetingList from '@/features/meeting/components/MeetingList';
-import { MEET_LIST_MOCKUP } from '@/features/meeting/constants';
 import BottomSheet from '@/global/components/BottomSheet';
 import { Header } from '@/global/layouts';
 import BackButton from '@/global/layouts/header/BackButton';
+import type { GetServerSidePropsContext, InferGetServerSidePropsType } from 'next';
 import { useState } from 'react';
 
-const MeetingMainPage = () => {
+type PageProps = InferGetServerSidePropsType<typeof getServerSideProps>;
+
+const MeetingMainPage = ({ partyListData }: PageProps) => {
   const [selectedId, setSelectedId] = useState<number | null>(null);
 
   const handleClick = (id: number) => {
@@ -17,9 +20,9 @@ const MeetingMainPage = () => {
     <>
       <Header left={<BackButton />} />
       <main>
-        <Map datas={MEET_LIST_MOCKUP} selectedId={selectedId} onItemClick={handleClick} />
+        <Map datas={partyListData} selectedId={selectedId} onItemClick={handleClick} />
         <BottomSheet>
-          <MeetingList selectedId={selectedId} />
+          <MeetingList datas={partyListData} selectedId={selectedId} />
         </BottomSheet>
       </main>
     </>
@@ -27,3 +30,11 @@ const MeetingMainPage = () => {
 };
 
 export default MeetingMainPage;
+
+export const getServerSideProps = async ({}: GetServerSidePropsContext) => {
+  const partyListData = await getPartyList();
+
+  return {
+    props: { partyListData },
+  };
+};

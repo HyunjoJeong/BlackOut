@@ -1,6 +1,6 @@
-import type { MeetItemDto } from './types/dto';
+import type { PartyDetailDto } from './types/dto';
 
-export const MEET_LIST_MOCKUP: Array<MeetItemDto> = [
+export const MEET_LIST_MOCKUP: Array<PartyDetailDto> = [
   {
     id: 1,
     created_at: '2025-01-11T08:49:56.688506+00:00',

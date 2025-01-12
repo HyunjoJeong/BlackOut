@@ -9,6 +9,8 @@ type Props = {
 };
 
 const Map = ({ datas, selectedId, onItemClick }: Props) => {
+  console.log(datas);
+
   return (
     <StyledSection>
       {datas?.map((itemData) => (
