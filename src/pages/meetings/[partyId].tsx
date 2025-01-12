@@ -1,5 +1,5 @@
 import { Button, Chip } from '@/core';
-import { getPartyDetail, postPartyJoin } from '@/features/meeting/apis';
+import { getPartyDetail, postPartyJoin, postPartyStart } from '@/features/meeting/apis';
 import PartyJoinCompleteModal from '@/features/meeting/components/PartyJoinCompleteModal';
 import PartyJoinModal from '@/features/meeting/components/PartyJoinModal';
 import { Header } from '@/global/layouts';
@@ -25,7 +25,7 @@ const PartyDetailPage = ({ partyDetailData, partyId }: PageProps) => {
   } = partyDetailData;
 
   const router = useRouter();
-  const [isJoinModalOpen, setIsJoinModalOpen] = useState(true);
+  const [isJoinModalOpen, setIsJoinModalOpen] = useState(false);
   const [isCompleteModalOpen, setIsCompleteModalOpen] = useState(false);
 
   const handleJoinClick = () => {
@@ -39,12 +39,17 @@ const PartyDetailPage = ({ partyDetailData, partyId }: PageProps) => {
   const handleJoinModalJoinClick = async () => {
     setIsJoinModalOpen(false);
     setIsCompleteModalOpen(true);
-    // await postPartyJoin(partyId);
+    await postPartyJoin(partyId);
   };
 
   const handleCompleteModalConfirmClick = () => {
     setIsCompleteModalOpen(false);
     router.push('/');
+  };
+
+  const handleStartClick = async () => {
+    await postPartyStart(partyId);
+    router.replace({ query: router.query });
   };
 
   return (
@@ -105,7 +110,7 @@ const PartyDetailPage = ({ partyDetailData, partyId }: PageProps) => {
               <Button variant="outlinedAssistive" font="button1" onClick={router.back}>
                 취소하기
               </Button>
-              <Button variant="filledPrimary" font="button1">
+              <Button variant="filledPrimary" font="button1" onClick={handleStartClick}>
                 출발하기
               </Button>
             </>
