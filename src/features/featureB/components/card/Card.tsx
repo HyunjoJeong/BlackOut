@@ -26,7 +26,7 @@ const Card: React.FC<CardProps> = ({
     <div {...props} css={cardStyle}>
       <div css={imageWrapperStyle}>
         <Image
-          src={'/thumbnail.jpeg'}
+          src={imageSrc}
           alt="Image"
           width={100}
           height={100}
