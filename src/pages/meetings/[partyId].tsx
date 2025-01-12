@@ -1,15 +1,18 @@
 import { Button, Chip } from '@/core';
-import { getPartyDetail } from '@/features/meeting/apis';
+import { getPartyDetail, postPartyJoin, postPartyStart } from '@/features/meeting/apis';
+import PartyJoinCompleteModal from '@/features/meeting/components/PartyJoinCompleteModal';
+import PartyJoinModal from '@/features/meeting/components/PartyJoinModal';
 import { Header } from '@/global/layouts';
 import BackButton from '@/global/layouts/header/BackButton';
 import styled from '@emotion/styled';
 import type { GetServerSidePropsContext, InferGetServerSidePropsType } from 'next';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
+import { useState } from 'react';
 
 type PageProps = InferGetServerSidePropsType<typeof getServerSideProps>;
 
-const PartyDetailPage = ({ partyDetailData }: PageProps) => {
+const PartyDetailPage = ({ partyDetailData, partyId }: PageProps) => {
   const {
     title,
     organizer_name,
@@ -22,6 +25,32 @@ const PartyDetailPage = ({ partyDetailData }: PageProps) => {
   } = partyDetailData;
 
   const router = useRouter();
+  const [isJoinModalOpen, setIsJoinModalOpen] = useState(false);
+  const [isCompleteModalOpen, setIsCompleteModalOpen] = useState(false);
+
+  const handleJoinClick = () => {
+    setIsJoinModalOpen(true);
+  };
+
+  const handleJoinModalCancelClick = () => {
+    setIsJoinModalOpen(false);
+  };
+
+  const handleJoinModalJoinClick = async () => {
+    setIsJoinModalOpen(false);
+    setIsCompleteModalOpen(true);
+    await postPartyJoin(partyId);
+  };
+
+  const handleCompleteModalConfirmClick = () => {
+    setIsCompleteModalOpen(false);
+    router.push('/');
+  };
+
+  const handleStartClick = async () => {
+    await postPartyStart(partyId);
+    router.replace({ query: router.query });
+  };
 
   return (
     <>
@@ -72,7 +101,7 @@ const PartyDetailPage = ({ partyDetailData }: PageProps) => {
         </GrayBox>
         <StyledButtonsWrapper>
           {available_action === 'JOIN' && (
-            <Button variant="filledPrimary" font="button1">
+            <Button variant="filledPrimary" font="button1" onClick={handleJoinClick}>
               참여하기
             </Button>
           )}
@@ -81,12 +110,21 @@ const PartyDetailPage = ({ partyDetailData }: PageProps) => {
               <Button variant="outlinedAssistive" font="button1" onClick={router.back}>
                 취소하기
               </Button>
-              <Button variant="filledPrimary" font="button1">
+              <Button variant="filledPrimary" font="button1" onClick={handleStartClick}>
                 출발하기
               </Button>
             </>
           )}
         </StyledButtonsWrapper>
+        <PartyJoinModal
+          isOpen={isJoinModalOpen}
+          onCancelClick={handleJoinModalCancelClick}
+          onJoinClick={handleJoinModalJoinClick}
+        />
+        <PartyJoinCompleteModal
+          isOpen={isCompleteModalOpen}
+          onConfirmClick={handleCompleteModalConfirmClick}
+        />
       </StyledMain>
     </>
   );
@@ -96,10 +134,11 @@ export default PartyDetailPage;
 
 export const getServerSideProps = async ({ req, res, query }: GetServerSidePropsContext) => {
   const partyId = Number(query.partyId);
+
   const partyDetailData = await getPartyDetail(partyId);
 
   return {
-    props: { partyDetailData },
+    props: { partyId, partyDetailData },
   };
 };
 
