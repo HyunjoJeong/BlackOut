@@ -8,7 +8,13 @@ export default function Home() {
   return (
     <>
       <main>
-        <Image src={'/mainpage.png'} alt="메인화면 ㅋ" fill />
+        <Image
+          src={'/mainpage.png'}
+          alt="메인화면 ㅋ"
+          width={560}
+          height={1308}
+          css={{ width: '100%', height: 'auto', aspectRatio: '560/1308' }}
+        />
         <InvisibileButton
           css={{
             width: 100,
