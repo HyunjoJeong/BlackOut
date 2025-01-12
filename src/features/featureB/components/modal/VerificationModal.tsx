@@ -105,7 +105,7 @@ export default VerificationModal;
 const modalContentStyle = css`
   background: #ffffff;
   border-radius: 16px;
-  padding: 16px;
+  /* padding: 16px; */
   padding-bottom: 0px;
   display: flex;
   flex-direction: column;
