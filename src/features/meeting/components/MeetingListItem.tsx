@@ -25,7 +25,7 @@ const MeetingListItem = ({ data }: Props) => {
         </Chip>
         <h2>{title}</h2>
         <p>{destination}</p>
-        <p>날짜...</p>
+        <p>오늘 저녁 9시</p>
         <StyledConstraintsWrapper>
           <StyledParticipantsWrapper>
             <p>2명 참여중</p>
