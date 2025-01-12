@@ -2,10 +2,10 @@ import { Chip } from '@/core';
 import styled from '@emotion/styled';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import type { MeetItemDto } from '../types/dto';
+import type { PartyListItemDto } from '../types/dto';
 
 type Props = {
-  data: MeetItemDto;
+  data: PartyListItemDto;
 };
 
 const MOCK_IMAGE =
@@ -25,7 +25,7 @@ const MeetingListItem = ({ data }: Props) => {
         </Chip>
         <h2>{title}</h2>
         <p>{destination}</p>
-        <p>날짜...</p>
+        <p>오늘 저녁 9시</p>
         <StyledConstraintsWrapper>
           <StyledParticipantsWrapper>
             <p>2명 참여중</p>

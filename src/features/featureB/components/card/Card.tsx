@@ -25,7 +25,13 @@ const Card: React.FC<CardProps> = ({
   return (
     <div {...props} css={cardStyle}>
       <div css={imageWrapperStyle}>
-        <Image src={imageSrc} alt="Image" width={100} height={100} css={imagePlaceholderStyle} />
+        <Image
+          src={'/thumbnail.jpeg'}
+          alt="Image"
+          width={100}
+          height={100}
+          css={imagePlaceholderStyle}
+        />
       </div>
 
       <div css={contentWrapperStyle}>
@@ -34,8 +40,8 @@ const Card: React.FC<CardProps> = ({
         </Chip>
 
         <div css={mainContentStyle}>
-          <div css={[theme.typography.label0, { color: theme.colors.gray[600] }]}>{title}</div>
-          <div css={[theme.typography.label1, { color: theme.colors.gray[600] }]}>{hostname}</div>
+          <div css={[theme.typography.subTitle3, { color: theme.colors.gray[800] }]}>{title}</div>
+          <div css={[theme.typography.label0, { color: theme.colors.gray[700] }]}>{hostname}</div>
         </div>
 
         <div css={footerStyle}>

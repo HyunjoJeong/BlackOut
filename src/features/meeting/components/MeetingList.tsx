@@ -1,15 +1,14 @@
 import ScrollArea from '@/global/components/ScrollArea';
-import { MEET_LIST_MOCKUP } from '../constants';
+import { PartyListItemDto } from '../types/dto';
 import MeetingListItem from './MeetingListItem';
 
 type Props = {
+  datas: PartyListItemDto[];
   selectedId: number | null;
 };
 
-const MeetingList = ({ selectedId }: Props) => {
-  const list = !!selectedId
-    ? MEET_LIST_MOCKUP.filter(({ id }) => id === selectedId)
-    : MEET_LIST_MOCKUP;
+const MeetingList = ({ datas, selectedId }: Props) => {
+  const list = !!selectedId ? datas.filter(({ id }) => id === selectedId) : datas;
 
   return (
     <ScrollArea maxHeight={240}>
