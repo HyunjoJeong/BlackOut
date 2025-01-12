@@ -164,7 +164,6 @@ export default function GcoomGoBottom({
         onClose={() => {
           setIsCompletedModalOpen(false);
           router.push('/');
-          router.refresh();
         }}
         onConfirm={() => {
           setIsCompletedModalOpen(false);
