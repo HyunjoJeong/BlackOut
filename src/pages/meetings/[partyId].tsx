@@ -151,7 +151,7 @@ const PartyDetailPage = ({ partyId }: PageProps) => {
             </>
           )}
           {available_action === 'PHOTO' && (
-            <Button variant="filledPrimary" font="button1">
+            <Button variant="filledPrimary" font="button1" onClick={() => router.push('/photo')}>
               인증샷 남기기
             </Button>
           )}
