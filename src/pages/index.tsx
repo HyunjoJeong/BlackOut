@@ -7,7 +7,7 @@ export default function Home() {
 
   return (
     <>
-      <main>
+      <main css={{ position: 'relative', height: 'fit-content' }}>
         <Image
           src={'/mainpage.png'}
           alt="메인화면 ㅋ"
@@ -28,7 +28,7 @@ export default function Home() {
           css={{
             width: 180,
             height: 32,
-            top: 120,
+            top: 140,
             left: 32,
           }}
           onClick={() => router.push('/meetings/2')}
@@ -36,18 +36,18 @@ export default function Home() {
         <InvisibileButton
           css={{
             width: 160,
-            height: 144,
+            height: 160,
             left: 12,
-            bottom: 20,
+            bottom: 28,
           }}
           onClick={() => router.push('/depart')}
         />
         <InvisibileButton
           css={{
             width: 160,
-            height: 144,
+            height: 160,
             right: 12,
-            bottom: 20,
+            bottom: 28,
           }}
           onClick={() => router.push('/meetings')}
         />
@@ -59,5 +59,5 @@ export default function Home() {
 const InvisibileButton = styled.button`
   border: none;
   background-color: transparent;
-  position: fixed;
+  position: absolute;
 `;
