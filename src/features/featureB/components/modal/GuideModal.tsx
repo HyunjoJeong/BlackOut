@@ -64,7 +64,7 @@ const GuideModal: React.FC<GuideModalProps> = ({ isOpen, onClose, onConfirm, sel
             css={{
               backgroundColor: theme.colors.gray[300],
               color: theme.colors.gray[0],
-              padding: '16px 50px',
+              padding: '16px 56px',
             }}
             onClick={onClose}
           >
@@ -72,7 +72,7 @@ const GuideModal: React.FC<GuideModalProps> = ({ isOpen, onClose, onConfirm, sel
           </Button>
           <Button
             variant="filledPrimary"
-            css={{ padding: '16px 36px' }}
+            css={{ padding: '16px 42px' }}
             onClick={() => {
               if (selectedId) {
                 postEventJoin(selectedId);
