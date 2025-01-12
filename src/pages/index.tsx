@@ -11,6 +11,15 @@ export default function Home() {
         <Image src={'/mainpage.png'} alt="메인화면 ㅋ" fill />
         <InvisibileButton
           css={{
+            width: 100,
+            height: 32,
+            top: 20,
+            left: 20,
+          }}
+          onClick={() => router.push('/signin')}
+        />
+        <InvisibileButton
+          css={{
             width: 180,
             height: 32,
             top: 120,
