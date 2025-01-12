@@ -7,7 +7,7 @@ export const getPartyList = async () => {
 };
 
 export const getPartyDetail = async (partyId: number) => {
-  const { data } = await APIServer.get<PartyDetailDto>(`/parties/${partyId}`);
+  const { data } = await APIServer.get<PartyDetailDto>(`/parties/${partyId}/`);
   return data;
 };
 
@@ -21,11 +21,13 @@ export const createNewParty = async (formData: MeetingFormData) => {
 };
 
 export const postPartyJoin = async (partyId: number) => {
-  await APIServer.post(`/parties/${partyId}/join`);
+  const { data } = await APIServer.post(`/parties/${partyId}/join`);
+  return data;
 };
 
 export const postPartyStart = async (partyId: number) => {
-  await APIServer.post(`/parties/${partyId}/start`);
+  const { data } = await APIServer.post(`/parties/${partyId}/start`);
+  return data;
 };
 
 export const postPartyEnd = async (partyId: number, formData: MeetingImageFormData) => {

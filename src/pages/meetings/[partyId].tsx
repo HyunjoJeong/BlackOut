@@ -1,7 +1,8 @@
 import { Button, Chip } from '@/core';
-import { getPartyDetail, postPartyJoin, postPartyStart } from '@/features/meeting/apis';
+import { postPartyJoin, postPartyStart } from '@/features/meeting/apis';
 import PartyJoinCompleteModal from '@/features/meeting/components/PartyJoinCompleteModal';
 import PartyJoinModal from '@/features/meeting/components/PartyJoinModal';
+import { usePartyDetailQuery } from '@/features/meeting/hooks/usePartyDetailQuery';
 import { Header } from '@/global/layouts';
 import BackButton from '@/global/layouts/header/BackButton';
 import styled from '@emotion/styled';
@@ -12,17 +13,8 @@ import { useState } from 'react';
 
 type PageProps = InferGetServerSidePropsType<typeof getServerSideProps>;
 
-const PartyDetailPage = ({ partyDetailData, partyId }: PageProps) => {
-  const {
-    title,
-    organizer_name,
-    description,
-    destination,
-    participants_status,
-    num_participants,
-    remaining_num,
-    available_action,
-  } = partyDetailData;
+const PartyDetailPage = ({ partyId }: PageProps) => {
+  const { data } = usePartyDetailQuery(partyId);
 
   const router = useRouter();
   const [isJoinModalOpen, setIsJoinModalOpen] = useState(false);
@@ -38,8 +30,8 @@ const PartyDetailPage = ({ partyDetailData, partyId }: PageProps) => {
 
   const handleJoinModalJoinClick = async () => {
     setIsJoinModalOpen(false);
-    setIsCompleteModalOpen(true);
-    await postPartyJoin(partyId);
+    const data = await postPartyJoin(partyId);
+    if (data?.msg) setIsCompleteModalOpen(true);
   };
 
   const handleCompleteModalConfirmClick = () => {
@@ -48,9 +40,22 @@ const PartyDetailPage = ({ partyDetailData, partyId }: PageProps) => {
   };
 
   const handleStartClick = async () => {
-    await postPartyStart(partyId);
-    router.replace({ query: router.query });
+    const data = await postPartyStart(partyId);
+    if (data?.msg) router.replace({ query: router.query });
   };
+
+  if (!data) return null;
+
+  const {
+    title,
+    organizer_name,
+    description,
+    destination,
+    participants_status,
+    num_participants,
+    remaining_num,
+    available_action,
+  } = data;
 
   return (
     <>
@@ -135,10 +140,8 @@ export default PartyDetailPage;
 export const getServerSideProps = async ({ req, res, query }: GetServerSidePropsContext) => {
   const partyId = Number(query.partyId);
 
-  const partyDetailData = await getPartyDetail(partyId);
-
   return {
-    props: { partyId, partyDetailData },
+    props: { partyId },
   };
 };
 

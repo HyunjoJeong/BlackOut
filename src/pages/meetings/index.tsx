@@ -1,16 +1,15 @@
 import Map from '@/features/map/components/Map';
-import { getPartyList } from '@/features/meeting/apis';
 import MeetingList from '@/features/meeting/components/MeetingList';
+import { usePartyListQuery } from '@/features/meeting/hooks/usePartyListQuery';
 import BottomSheet from '@/global/components/BottomSheet';
 import { Header } from '@/global/layouts';
 import BackButton from '@/global/layouts/header/BackButton';
-import type { GetServerSidePropsContext, InferGetServerSidePropsType } from 'next';
 import { useState } from 'react';
 
-type PageProps = InferGetServerSidePropsType<typeof getServerSideProps>;
-
-const MeetingMainPage = ({ partyListData }: PageProps) => {
+const MeetingMainPage = () => {
   const [selectedId, setSelectedId] = useState<number | null>(null);
+
+  const { data } = usePartyListQuery();
 
   const handleClick = (id: number) => {
     setSelectedId(id === selectedId ? null : id);
@@ -20,9 +19,9 @@ const MeetingMainPage = ({ partyListData }: PageProps) => {
     <>
       <Header left={<BackButton />} />
       <main>
-        <Map datas={partyListData} selectedId={selectedId} onItemClick={handleClick} />
+        <Map datas={data} selectedId={selectedId} onItemClick={handleClick} />
         <BottomSheet>
-          <MeetingList datas={partyListData} selectedId={selectedId} />
+          <MeetingList datas={data} selectedId={selectedId} />
         </BottomSheet>
       </main>
     </>
@@ -30,11 +29,3 @@ const MeetingMainPage = ({ partyListData }: PageProps) => {
 };
 
 export default MeetingMainPage;
-
-export const getServerSideProps = async ({}: GetServerSidePropsContext) => {
-  const partyListData = await getPartyList();
-
-  return {
-    props: { partyListData },
-  };
-};
